@@ -33,6 +33,21 @@
             android:paddingTop="5dp"
             android:text="@string/ubicacionState"
             tools:text="[No se pudo determinar su ubicacion]" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionHint="Seleccione su localidad"
+            android:completionThreshold="3"
+            android:hint="Selecicone su localidad"
+            android:text="AutoCompleteTextView" />
+
+        <Button
+            android:id="@+id/saveLoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar" />
     </LinearLayout>
 
 </FrameLayout>
