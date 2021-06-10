@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UbicacionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/ubiContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:background="@drawable/ubicontainer_drawable"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ubicacionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubicacion:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Ubicacion:" />
+
+        <TextView
+            android:id="@+id/ubicacionState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/ubicacionLabel"
+            android:paddingTop="5dp"
+            android:text="@string/ubicacionState"
+            tools:text="[No se pudo determinar su ubicacion]" />
+    </LinearLayout>
+
+</FrameLayout>

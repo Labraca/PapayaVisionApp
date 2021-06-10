@@ -1,0 +1,3 @@
+rootProject.name = "PapayaVision"
+include ':app'
+include ':opencv4_5_2'
