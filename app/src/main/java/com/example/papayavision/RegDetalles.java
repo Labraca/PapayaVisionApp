@@ -18,6 +18,7 @@ public class RegDetalles extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_detalles);
+        getSupportActionBar().hide();
         regRepo = new RegRepository(getApplication());
         int idReg = getIntent().getIntExtra("idReg", Integer.MIN_VALUE);
 

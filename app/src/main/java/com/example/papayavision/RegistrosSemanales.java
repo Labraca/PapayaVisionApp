@@ -19,6 +19,8 @@ public class RegistrosSemanales extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registros_semanales);
 
+        getSupportActionBar().hide();
+
         RecyclerView recyclerView = findViewById(R.id.recycled_RegSem);
         final Adaptador adapter = new Adaptador(new Adaptador.RegDiff());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

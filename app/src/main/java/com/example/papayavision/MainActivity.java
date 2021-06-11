@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        String ubi = QueryPreferencias.cargarUbicacion(getApplicationContext());
+        String[] ubi = QueryPreferencias.cargarUbicacion(getApplicationContext());
         ubiState = findViewById(R.id.ubicacionState);
         if((!QueryPreferencias.existeUbi(getApplicationContext()))
                 || (ubi.equals("No hay ubicación guardada"))
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             //crear archivo
             updateGPS();
         }else{
-            ubiState.setText(ubi);
+            ubiState.setText(ubi[0]+","+ubi[1]);
         }
 
         db = new RegRepository(getApplication());
@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                     .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-                    //we got permisinon,put values.
                     putGeocode(location);
                 }
             });
@@ -115,22 +114,23 @@ public class MainActivity extends AppCompatActivity {
     private void putGeocode(Location location) {
 
         Geocoder geocoder = new Geocoder(this);
-        String ubicacion;
+        String[] ubicacion;
         try {
 
             List<Address> addresses = geocoder
                     .getFromLocation(location.getLatitude(),location.getLongitude(),1);
-
-            QueryPreferencias.guardarUbicacion(getApplicationContext(),addresses.get(0).getLocality());
+            Address address = addresses.get(0);
+            QueryPreferencias.guardarUbicacion(getApplicationContext(),address.getLocality(),address.getPostalCode());
 
         }catch (Exception e){
 
             QueryPreferencias
-                    .guardarUbicacion(getApplicationContext(),"No se consiguió determinar su ubicación");
+                    .guardarUbicacion(getApplicationContext(),"No se consiguió determinar su ubicación","");
 
         }
         ubicacion = QueryPreferencias.cargarUbicacion(getApplicationContext());
-        ubiState.setText(ubicacion);
+
+        ubiState.setText(ubicacion[0]+","+ubicacion[1]);
     }
 
     @Override
