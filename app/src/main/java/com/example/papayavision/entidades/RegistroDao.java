@@ -25,4 +25,6 @@ public interface RegistroDao {
     public LiveData<Registro> getLastRegistro();
     @Query("DELETE FROM REGISTRO")
     public void deleteAll();
+    @Query("SELECT * FROM REGISTRO WHERE id = :idReg")
+    public LiveData<Registro> getRegById(int idReg);
 }

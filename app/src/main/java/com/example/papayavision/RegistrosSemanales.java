@@ -29,6 +29,7 @@ public class RegistrosSemanales extends AppCompatActivity {
         iRegistroViewModel.getAllRegSem().observe(this, registros -> {
             adapter.submitList(registros);
         });
-
     }
+
+
 }

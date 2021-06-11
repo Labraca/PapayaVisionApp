@@ -3,6 +3,7 @@ package com.example.papayavision;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import android.Manifest;
@@ -14,11 +15,14 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.papayavision.DBUtilities.QueryPreferencias;
 import com.example.papayavision.DBUtilities.RegRepository;
 import com.example.papayavision.entidades.Registro;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import org.jetbrains.annotations.NotNull;
@@ -30,18 +34,26 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_COARSE_LOCATION = 99 ;
     private RegRepository db;
+    private TextView ubiState;
     //Google api para saber onde estamos
-    FusedLocationProviderClient fusedlocation;
+    private FusedLocationProviderClient fusedlocation;
+    private LocationRequest locReq;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-
-        if(!QueryPreferencias.existeUbi(getApplicationContext())) {
+        String ubi = QueryPreferencias.cargarUbicacion(getApplicationContext());
+        ubiState = findViewById(R.id.ubicacionState);
+        if((!QueryPreferencias.existeUbi(getApplicationContext()))
+                || (ubi.equals("No hay ubicación guardada"))
+                || (ubi.equals("No se consiguió determinar su ubicación"))) {
             //crear archivo
             updateGPS();
+        }else{
+            ubiState.setText(ubi);
         }
 
         db = new RegRepository(getApplication());
@@ -52,17 +64,22 @@ public class MainActivity extends AppCompatActivity {
                 insertNuevosReg(registro);
             }
         });
-    }//end create
 
+    }//end create
+    public void updateGPSP(View view){
+        updateGPS();
+    }
     private void updateGPS(){
         //Validar permisos de gps
         //conseguir la localizacion etc
-
-        fusedlocation = LocationServices.getFusedLocationProviderClient(this);
+        if(fusedlocation == null)
+            fusedlocation = LocationServices.getFusedLocationProviderClient(this);
 
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED){
-
+            locReq = LocationRequest.create();
+            locReq.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+            fusedlocation.requestLocationUpdates(locReq,null);
             fusedlocation.getLastLocation()
                     .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
@@ -98,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     private void putGeocode(Location location) {
 
         Geocoder geocoder = new Geocoder(this);
-
+        String ubicacion;
         try {
 
             List<Address> addresses = geocoder
@@ -109,10 +126,11 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
 
             QueryPreferencias
-                    .guardarUbicacion(getApplicationContext(),"No se consiguió determinar su UbicacionFragment");
+                    .guardarUbicacion(getApplicationContext(),"No se consiguió determinar su ubicación");
 
         }
-
+        ubicacion = QueryPreferencias.cargarUbicacion(getApplicationContext());
+        ubiState.setText(ubicacion);
     }
 
     @Override

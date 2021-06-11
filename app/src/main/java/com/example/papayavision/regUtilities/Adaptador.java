@@ -1,5 +1,8 @@
 package com.example.papayavision.regUtilities;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -14,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.papayavision.MainActivity;
 import com.example.papayavision.R;
+import com.example.papayavision.RegDetalles;
 import com.example.papayavision.entidades.Registro;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +36,19 @@ public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
        };
 
     private final View.OnClickListener clk = new ClickRegListener();
+    public class ClickRegListener implements View.OnClickListener {
 
+        @Override
+        public void onClick(View view) {
+            RecyclerView rv = ((View)view.getParent()).findViewById(R.id.recycled_RegSem);
+            int itemPos = rv.getChildLayoutPosition(view);
+            Context c = view.getContext();
+            Registro reg = getItem(itemPos);
+            Intent i = new Intent(c, RegDetalles.class);
+            i.putExtra("idReg",reg.getId());
+            c.startActivity(i);
+        }
+    }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView volumen;
         private final TextView fechas;
@@ -52,6 +69,7 @@ public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
                     .inflate(R.layout.reg_lista, parent, false);
             return new ViewHolder(view);
         }
+
     }
 
     @NonNull

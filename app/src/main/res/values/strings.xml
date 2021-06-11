@@ -2,7 +2,13 @@
     <string name="app_name">PapayaVision</string>
     <string name="volumen"></string>
     <string name="fechas"></string>
-    <string name="ubicacionState"></string>
+    <string name="ubicacionState">[No se pudo determinar su ubicacion]</string>
+    <string name="volActual"></string>
+    <string name="estimacion">0t</string>
+    <string name="tempActual">-</string>
+    <string name="hrelActual">-</string>
+    <string name="tempPrxSem">-</string>
+    <string name="hrelPrxSem">-</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

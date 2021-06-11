@@ -40,7 +40,10 @@ public class RegRepository {
         });
     }
     public LiveData<Registro> getLast() {
-
         return regDao.getLastRegistro();
+    }
+
+    public LiveData<Registro> getRegById(int id){
+        return regDao.getRegById(id);
     }
 }

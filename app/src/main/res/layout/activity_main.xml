@@ -6,6 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/ubiContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:background="@drawable/ubicontainer_drawable"
+        android:clickable="true"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRegSem">
+
+        <TextView
+            android:id="@+id/ubicacionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubicacion:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Ubicacion:" />
+
+        <TextView
+            android:id="@+id/ubicacionState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/ubicacionLabel"
+            android:paddingTop="5dp"
+            android:text="@string/ubicacionState"
+            tools:text="[No se pudo determinar su ubicacion]" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionHint="Seleccione su localidad"
+            android:completionThreshold="3"
+            android:hint="Selecicone su localidad"
+            android:text="AutoCompleteTextView" />
+
+        <Button
+            android:id="@+id/saveLoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/detectUbi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="updateGPSP"
+            android:text="Detectar ubicacion" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/toRegSem"
         android:layout_width="0dp"
@@ -70,12 +123,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbarRegSem" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.example.papayavision.UbicacionFragment"
-        android:layout_width="0dp"
-        android:layout_height="222dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarRegSem" />
 </androidx.constraintlayout.widget.ConstraintLayout>
