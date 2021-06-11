@@ -25,6 +25,8 @@ public class RegistrosSemanales extends AppCompatActivity {
         final Adaptador adapter = new Adaptador(new Adaptador.RegDiff());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setHasFixedSize(true);
 
         iRegistroViewModel = new ViewModelProvider(this).get(RegistroViewModel.class);
 

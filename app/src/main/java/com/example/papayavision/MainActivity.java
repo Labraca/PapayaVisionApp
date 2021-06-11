@@ -14,6 +14,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +24,12 @@ import com.example.papayavision.entidades.Registro;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnTokenCanceledListener;
+
 import org.jetbrains.annotations.NotNull;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView ubiState;
     //Google api para saber onde estamos
     private FusedLocationProviderClient fusedlocation;
-    private LocationRequest locReq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 || (ubi.equals("No hay ubicación guardada"))
                 || (ubi.equals("No se consiguió determinar su ubicación"))) {
             //crear archivo
+
             updateGPS();
         }else{
             ubiState.setText(ubi[0]+","+ubi[1]);
@@ -70,23 +75,39 @@ public class MainActivity extends AppCompatActivity {
         updateGPS();
     }
     private void updateGPS(){
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         //Validar permisos de gps
         //conseguir la localizacion etc
         if(fusedlocation == null)
             fusedlocation = LocationServices.getFusedLocationProviderClient(this);
-
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED){
-            locReq = LocationRequest.create();
-            locReq.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-            fusedlocation.requestLocationUpdates(locReq,null);
-            fusedlocation.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+
+            fusedlocation.getCurrentLocation(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY, new CancellationToken() {
+                @Override
+                public boolean isCancellationRequested() {
+                    return false;
+                }
+
+                @NonNull
+                @NotNull
+                @Override
+                public CancellationToken onCanceledRequested(@NonNull @NotNull OnTokenCanceledListener onTokenCanceledListener) {
+                    return null;
+                }
+            }).addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     putGeocode(location);
                 }
             });
+           /* fusedlocation.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    putGeocode(location);
+                }
+            });*/
         }else{
 
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -95,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+        findViewById(R.id.progressBar).setVisibility(View.GONE);
     }
 
     @Override
