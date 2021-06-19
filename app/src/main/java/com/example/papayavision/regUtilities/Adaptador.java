@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,12 +28,15 @@ import org.jetbrains.annotations.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
 
+    private LiveData<List<Registro>> localDataSet;
 
-    public Adaptador(@NonNull DiffUtil.ItemCallback<Registro> diffCallback) {
+    public Adaptador(@NonNull DiffUtil.ItemCallback<Registro> diffCallback,LiveData<List<Registro>> dataset) {
         super(diffCallback);
+        dataset = localDataSet;
        };
 
     private final View.OnClickListener clk = new ClickRegListener();
@@ -71,7 +75,10 @@ public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
         }
 
     }
-
+    @Override
+    public int getItemCount() {
+        return localDataSet.getValue().size();
+    }
     @NonNull
     @org.jetbrains.annotations.NotNull
     @Override
@@ -82,10 +89,11 @@ public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
 
         return new ViewHolder(view);
     }
-
+    //TODO
     @Override
     public void onBindViewHolder(@NonNull @NotNull Adaptador.ViewHolder holder, int position) {
         Date fechaActual = getItem(position).getInicioFecha();
+
         Calendar cal = Calendar.getInstance();
         cal.setTime(fechaActual);
         cal.add(Calendar.DAY_OF_WEEK, 6);

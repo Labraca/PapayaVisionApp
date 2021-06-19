@@ -21,14 +21,14 @@ public class RegistrosSemanales extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        iRegistroViewModel = new ViewModelProvider(this).get(RegistroViewModel.class);
         RecyclerView recyclerView = findViewById(R.id.recycled_RegSem);
-        final Adaptador adapter = new Adaptador(new Adaptador.RegDiff());
+        final Adaptador adapter = new Adaptador(new Adaptador.RegDiff(),iRegistroViewModel.getAllRegSem());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.setItemViewCacheSize(20);
         recyclerView.setHasFixedSize(true);
 
-        iRegistroViewModel = new ViewModelProvider(this).get(RegistroViewModel.class);
 
         iRegistroViewModel.getAllRegSem().observe(this, registros -> {
             adapter.submitList(registros);

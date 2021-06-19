@@ -1,14 +1,19 @@
 package com.example.papayavision;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.papayavision.DBUtilities.RegRepository;
 import com.example.papayavision.entidades.Registro;
+
+import org.jetbrains.annotations.NotNull;
 
 public class RegDetalles extends AppCompatActivity {
     private RegRepository regRepo;
@@ -38,6 +43,20 @@ public class RegDetalles extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 99){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+              //  startcamera();
+            }else{
+                Toast.makeText(this,"Esta aplicacion necesita saber la localización de su invernadero para su correcto funcionaminento",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 
 }

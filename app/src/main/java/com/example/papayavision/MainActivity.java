@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         cal.setFirstDayOfWeek(cal.MONDAY);
         Date lastConnection = last.getInicioFecha();
         cal.setTime(lastConnection);
+
         int currentADias = (int) TimeUnit.MILLISECONDS.toDays(currentDate.getTime());
         int lastConnectADias = (int) TimeUnit.MILLISECONDS.toDays(lastConnection.getTime());
 
@@ -192,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
             db.insert(reg);
         }*/
     }
-
+    //TODO
     public void launchActivity(View v){
         Intent i = null;
         switch(v.getId()){

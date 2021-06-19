@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 @Entity(indices = {@Index(value = {"inicioFecha"},
         unique = true)})
@@ -23,7 +24,7 @@ public class Registro {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "volumen")
-    private int volumen;
+    private int volumen = 0;
 
     @Size(min = 0,max =100)
     @ColumnInfo(name = "hrel")
@@ -41,10 +42,21 @@ public class Registro {
     @ColumnInfo(name = "perMuyMaduras")
     private int perMuyMaduras = 0;
     @ColumnInfo(name = "temp")
-    private int temp;
+    private float temp;
     @NotNull
     @ColumnInfo(name = "inicioFecha")
     private Date inicioFecha;
+    @NotNull
+    @ColumnInfo(name = "finFecha")
+    private Date finFecha;
+
+    public Date getFinFecha() {
+        return finFecha;
+    }
+
+    public void setFinFecha(Date finFecha) {
+        this.finFecha = finFecha;
+    }
 
     public int getVolumen() {
         return volumen;
@@ -94,11 +106,11 @@ public class Registro {
         this.perMuyMaduras = perMuyMaduras;
     }
 
-    public int getTemp() {
+    public float getTemp() {
         return temp;
     }
 
-    public void setTemp(int temp) {
+    public void setTemp(float temp) {
         this.temp = temp;
     }
 
@@ -123,8 +135,17 @@ public class Registro {
     public Registro(int volumen, Date inicioFecha){
         this.volumen=volumen;
         this.inicioFecha=inicioFecha;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(inicioFecha);
+        cal.add(Calendar.DAY_OF_WEEK,6);
+        this.finFecha = cal.getTime();
         //this.hrel= API humedad
         //this.temp= API temperatura
+    }
+    public Registro(int volumen,Date inicioFecha,Date finFecha){
+        this.volumen = volumen;
+        this.inicioFecha = inicioFecha;
+        this.finFecha = finFecha;
     }
 
 }

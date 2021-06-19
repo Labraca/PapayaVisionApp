@@ -4,6 +4,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import org.apache.commons.text.similarity.LevenshteinDistance;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Entity()
 public class Municipio {
@@ -42,4 +47,5 @@ public class Municipio {
         this.municipio=municipio;
         this.codEstacion=codEstacion;
     }
+
 }
