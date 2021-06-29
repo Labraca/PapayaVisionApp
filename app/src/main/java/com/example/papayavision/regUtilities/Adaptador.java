@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,11 +33,9 @@ import java.util.List;
 
 public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
 
-    private LiveData<List<Registro>> localDataSet;
-
-    public Adaptador(@NonNull DiffUtil.ItemCallback<Registro> diffCallback,LiveData<List<Registro>> dataset) {
+    public Adaptador(@NonNull DiffUtil.ItemCallback<Registro> diffCallback) {
         super(diffCallback);
-        dataset = localDataSet;
+
        };
 
     private final View.OnClickListener clk = new ClickRegListener();
@@ -49,7 +48,7 @@ public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
             Context c = view.getContext();
             Registro reg = getItem(itemPos);
             Intent i = new Intent(c, RegDetalles.class);
-            i.putExtra("idReg",reg.getId());
+            i.putExtra("idReg",reg.getIdRegistro());
             c.startActivity(i);
         }
     }
@@ -75,10 +74,7 @@ public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
         }
 
     }
-    @Override
-    public int getItemCount() {
-        return localDataSet.getValue().size();
-    }
+
     @NonNull
     @org.jetbrains.annotations.NotNull
     @Override
@@ -110,12 +106,12 @@ public class Adaptador extends ListAdapter<Registro, Adaptador.ViewHolder>{
 
         @Override
         public boolean areItemsTheSame(@NonNull Registro oldItem, @NonNull Registro newItem) {
-            return oldItem.getId() == newItem.getId();
+            return oldItem.getIdRegistro() == newItem.getIdRegistro();
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Registro oldItem, @NonNull Registro newItem) {
-            return (oldItem.getId() == newItem.getId());
+            return (oldItem.getIdRegistro() == newItem.getIdRegistro());
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.papayavision.entidades.Foto;
 import com.example.papayavision.entidades.Municipio;
 import com.example.papayavision.entidades.MunicipioDAO;
 import com.example.papayavision.entidades.Registro;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Registro.class, Municipio.class}, version = 1)
+@Database(entities = {Registro.class, Municipio.class, Foto.class}, version = 1)
 @TypeConverters({DateConverters.class})
 public abstract class AppDatabase extends RoomDatabase {
     //DAO para los registros

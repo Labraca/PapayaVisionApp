@@ -23,7 +23,7 @@ public class RegistrosSemanales extends AppCompatActivity {
 
         iRegistroViewModel = new ViewModelProvider(this).get(RegistroViewModel.class);
         RecyclerView recyclerView = findViewById(R.id.recycled_RegSem);
-        final Adaptador adapter = new Adaptador(new Adaptador.RegDiff(),iRegistroViewModel.getAllRegSem());
+        final Adaptador adapter = new Adaptador(new Adaptador.RegDiff());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.setItemViewCacheSize(20);

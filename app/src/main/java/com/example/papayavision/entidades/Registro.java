@@ -22,41 +22,17 @@ import javax.validation.constraints.Null;
 
 public class Registro {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    @ColumnInfo(name = "idRegistro")
+    private int idRegistro;
     @ColumnInfo(name = "volumen")
     private int volumen = 0;
 
     @Size(min = 0,max =100)
     @ColumnInfo(name = "hrel")
-    private int hrel;
-    @Size(min = 0,max =100)
-    @ColumnInfo(name = "perMuyInmaduras")
-    private int perMuyInmaduras=0;
+    private float hrel;
     @Size(min = 0,max =100)
     @ColumnInfo(name = "perInmaduras")
-    private int perInmaduras=0;
-    @Size(min = 0,max =100)
-    @ColumnInfo(name = "perEnviables")
-    private int perEnviables=0;
-    @Size(min = 0,max =100)
-    @ColumnInfo(name = "perMuyMaduras")
-    private int perMuyMaduras = 0;
-    @ColumnInfo(name = "temp")
-    private float temp;
-    @NotNull
-    @ColumnInfo(name = "inicioFecha")
-    private Date inicioFecha;
-    @NotNull
-    @ColumnInfo(name = "finFecha")
-    private Date finFecha;
-
-    public Date getFinFecha() {
-        return finFecha;
-    }
-
-    public void setFinFecha(Date finFecha) {
-        this.finFecha = finFecha;
-    }
+    private float perInmaduras=0;
 
     public int getVolumen() {
         return volumen;
@@ -66,43 +42,35 @@ public class Registro {
         this.volumen = volumen;
     }
 
-    public int getHrel() {
+    public float getHrel() {
         return hrel;
     }
 
-    public void setHrel(int hrel) {
+    public void setHrel(float hrel) {
         this.hrel = hrel;
     }
 
-    public int getPerMuyInmaduras() {
-        return perMuyInmaduras;
-    }
-
-    public void setPerMuyInmaduras(int perMuyInmaduras) {
-        this.perMuyInmaduras = perMuyInmaduras;
-    }
-
-    public int getPerInmaduras() {
+    public float getPerInmaduras() {
         return perInmaduras;
     }
 
-    public void setPerInmaduras(int perInmaduras) {
+    public void setPerInmaduras(float perInmaduras) {
         this.perInmaduras = perInmaduras;
     }
 
-    public int getPerEnviables() {
+    public float getPerEnviables() {
         return perEnviables;
     }
 
-    public void setPerEnviables(int perEnviables) {
+    public void setPerEnviables(float perEnviables) {
         this.perEnviables = perEnviables;
     }
 
-    public int getPerMuyMaduras() {
+    public float getPerMuyMaduras() {
         return perMuyMaduras;
     }
 
-    public void setPerMuyMaduras(int perMuyMaduras) {
+    public void setPerMuyMaduras(float perMuyMaduras) {
         this.perMuyMaduras = perMuyMaduras;
     }
 
@@ -114,18 +82,43 @@ public class Registro {
         this.temp = temp;
     }
 
+    public Date getFinFecha() {
+        return finFecha;
+    }
+
+    public void setFinFecha(Date finFecha) {
+        this.finFecha = finFecha;
+    }
+
+    @Size(min = 0,max =100)
+    @ColumnInfo(name = "perEnviables")
+    private float perEnviables=0;
+    @Size(min = 0,max =100)
+    @ColumnInfo(name = "perMuyMaduras")
+    private float perMuyMaduras = 0;
+    @ColumnInfo(name = "temp")
+    private float temp;
+
+    public int getIdRegistro() {
+        return idRegistro;
+    }
+
+    public void setIdRegistro(int idRegistro) {
+        this.idRegistro = idRegistro;
+    }
+
+    @NotNull
+    @ColumnInfo(name = "inicioFecha")
+    private Date inicioFecha;
+    @NotNull
+    @ColumnInfo(name = "finFecha")
+    private Date finFecha;
+
+
     public Registro(){};
 
     public Date getInicioFecha() {
         return inicioFecha;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setInicioFecha(Date inicioFecha) {

@@ -15,6 +15,7 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnTokenCanceledListener;
 
 import org.jetbrains.annotations.NotNull;
+import org.opencv.android.OpenCVLoader;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        staticLoadCVLibraries();
+
         String[] ubi = QueryPreferencias.cargarUbicacion(getApplicationContext());
         ubiState = findViewById(R.id.ubicacionState);
         if((!QueryPreferencias.existeUbi(getApplicationContext()))
@@ -71,9 +76,46 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }//end create
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        LiveData<Registro> last = db.getLast();
+
+        last.observe(this, new Observer<Registro>() {
+            @Override
+            public void onChanged(Registro registro) {
+                insertNuevosReg(registro);
+            }
+        });
+    }
+
+    //TODO
+    public void launchActivity(View v){
+        Intent i = null;
+        switch(v.getId()){
+            case R.id.toPhoto:
+                //a camara
+                //startActivity(i);
+            case R.id.toRegSem:
+                i = new Intent(getApplicationContext(),RegistrosSemanales.class);
+                startActivity(i);
+            case R.id.toRegSemAct:
+                //al primer registro
+                //startActivity(i);
+        }
+    }
+    private void staticLoadCVLibraries() {
+        boolean load = OpenCVLoader.initDebug();
+        if(load){
+            Log.i("CV","Open CV Libraries loaded.");
+        }
+    }
+
     public void updateGPSP(View view){
         updateGPS();
     }
+
     private void updateGPS(){
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         //Validar permisos de gps
@@ -155,19 +197,6 @@ public class MainActivity extends AppCompatActivity {
         ubiState.setText(ubicacion[0]+","+ubicacion[1]);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        LiveData<Registro> last = db.getLast();
-
-        last.observe(this, new Observer<Registro>() {
-            @Override
-            public void onChanged(Registro registro) {
-                insertNuevosReg(registro);
-            }
-        });
-    }
 
     private void insertNuevosReg(Registro last) {
         Date currentDate = new Date();
@@ -193,20 +222,7 @@ public class MainActivity extends AppCompatActivity {
             db.insert(reg);
         }*/
     }
-    //TODO
-    public void launchActivity(View v){
-        Intent i = null;
-        switch(v.getId()){
-            case R.id.toPhoto:
-                //a camara
-                //startActivity(i);
-            case R.id.toRegSem:
-                i = new Intent(getApplicationContext(),RegistrosSemanales.class);
-                startActivity(i);
-            case R.id.toRegSemAct:
-                //al primer registro
-                //startActivity(i);
-        }
-    }
+
+
 
 }
