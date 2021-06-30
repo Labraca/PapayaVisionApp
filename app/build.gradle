@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.example.papayavision"
         minSdkVersion 28
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -82,5 +82,6 @@ dependencies {
     // If you want to additionally use the CameraX Extensions library
     implementation "androidx.camera:camera-extensions:1.0.0-alpha24"
 
+    implementation("com.google.guava:guava:30.1.1-android")
 
 }

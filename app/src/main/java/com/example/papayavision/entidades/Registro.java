@@ -113,10 +113,6 @@ public class Registro {
     @NotNull
     @ColumnInfo(name = "finFecha")
     private Date finFecha;
-
-
-    public Registro(){};
-
     public Date getInicioFecha() {
         return inicioFecha;
     }
@@ -124,6 +120,10 @@ public class Registro {
     public void setInicioFecha(Date inicioFecha) {
         this.inicioFecha = inicioFecha;
     }
+
+    public Registro(){};
+
+
 
     public Registro(int volumen, Date inicioFecha){
         this.volumen=volumen;
@@ -139,6 +139,13 @@ public class Registro {
         this.volumen = volumen;
         this.inicioFecha = inicioFecha;
         this.finFecha = finFecha;
+    }
+    public Registro(int volumen,Date inicioFecha,Date finFecha,float temp, float hrel){
+        this.volumen = volumen;
+        this.inicioFecha = inicioFecha;
+        this.finFecha = finFecha;
+        this.temp = temp;
+        this.hrel = hrel;
     }
 
 }
