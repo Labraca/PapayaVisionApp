@@ -25,14 +25,26 @@ public class Registro {
     @ColumnInfo(name = "idRegistro")
     private int idRegistro;
     @ColumnInfo(name = "volumen")
-    private int volumen = 0;
+    private int volumen = -1;
 
     @Size(min = 0,max =100)
     @ColumnInfo(name = "hrel")
-    private float hrel;
+    private float hrel= -1;
+
     @Size(min = 0,max =100)
     @ColumnInfo(name = "perInmaduras")
     private float perInmaduras=0;
+
+    @Size(min = 0,max =100)
+    @ColumnInfo(name = "perEnviables")
+    private float perEnviables=0;
+
+    @Size(min = 0,max =100)
+    @ColumnInfo(name = "perMuyMaduras")
+    private float perMuyMaduras = 0;
+
+    @ColumnInfo(name = "temp")
+    private float temp = -1;
 
     public int getVolumen() {
         return volumen;
@@ -90,14 +102,7 @@ public class Registro {
         this.finFecha = finFecha;
     }
 
-    @Size(min = 0,max =100)
-    @ColumnInfo(name = "perEnviables")
-    private float perEnviables=0;
-    @Size(min = 0,max =100)
-    @ColumnInfo(name = "perMuyMaduras")
-    private float perMuyMaduras = 0;
-    @ColumnInfo(name = "temp")
-    private float temp;
+
 
     public int getIdRegistro() {
         return idRegistro;
@@ -132,20 +137,18 @@ public class Registro {
         cal.setTime(inicioFecha);
         cal.add(Calendar.DAY_OF_WEEK,6);
         this.finFecha = cal.getTime();
-        //this.hrel= API humedad
-        //this.temp= API temperatura
     }
     public Registro(int volumen,Date inicioFecha,Date finFecha){
         this.volumen = volumen;
         this.inicioFecha = inicioFecha;
         this.finFecha = finFecha;
     }
-    public Registro(int volumen,Date inicioFecha,Date finFecha,float temp, float hrel){
+    public Registro(int volumen,Date inicioFecha,Date finFecha,float[] medias){
         this.volumen = volumen;
         this.inicioFecha = inicioFecha;
         this.finFecha = finFecha;
-        this.temp = temp;
-        this.hrel = hrel;
+        this.temp = medias[0];
+        this.hrel = medias[1];
     }
 
 }

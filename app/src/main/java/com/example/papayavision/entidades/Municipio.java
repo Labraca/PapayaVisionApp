@@ -1,5 +1,6 @@
 package com.example.papayavision.entidades;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
@@ -10,14 +11,25 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 @Entity()
 public class Municipio {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @NotNull
     @ColumnInfo(name = "Municipio")
     private String municipio;
-    @ColumnInfo(name = "CodEstacion")
-    private String codEstacion;
+
+    @PrimaryKey
+    @ColumnInfo(name = "CodMun")
+    private @NonNull String codMunicipio;
+
+    public String getCodMunicipio() {
+        return codMunicipio;
+    }
+
+    public void setCodMunicipio(String codMunicipio) {
+        this.codMunicipio = codMunicipio;
+    }
 
     public String getMunicipio() {
         return municipio;
@@ -27,25 +39,12 @@ public class Municipio {
         this.municipio = municipio;
     }
 
-    public String getCodEstacion() {
-        return codEstacion;
-    }
 
-    public void setCodEstacion(String codEstacion) {
-        this.codEstacion = codEstacion;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     public Municipio(){}
-    public Municipio(String municipio,String codEstacion){
+    public Municipio(String municipio,String codMunicipio){
         this.municipio=municipio;
-        this.codEstacion=codEstacion;
+        this.codMunicipio=codMunicipio;
     }
 
 }

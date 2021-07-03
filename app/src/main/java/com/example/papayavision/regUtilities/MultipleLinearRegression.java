@@ -20,11 +20,11 @@ import java.util.List;
 public class MultipleLinearRegression {
     private double[] pesos = new double[6];
     private double bias = 0.0;
-    private MultipleLinearRegression INSTANCIA;
+    private static MultipleLinearRegression INSTANCIA;
     private MultipleLinearRegression(Context context){
         leerPesosPref(context);
     }
-    public MultipleLinearRegression getINSTANCIA(Context context){
+    public static MultipleLinearRegression getINSTANCIA(Context context){
         if (INSTANCIA == null) {
             synchronized (MultipleLinearRegression.class) {
                 if (INSTANCIA == null) {
@@ -51,7 +51,16 @@ public class MultipleLinearRegression {
         double[] dPred_dW = inputs;
         double[] dJ_dW = multiplyScalar(dPred_dW,dJ_dPred);
         double dJ_dB = dJ_dPred;
-        return new ArrayList<Double>((Collection<? extends Double>) Arrays.asList(dJ_dW, dJ_dB));
+        ArrayList<Double> result = new ArrayList<>();
+        for (double i:dPred_dW){
+            Double x = new Double(i);
+            result.add(x);
+        }
+
+        Double x = new Double(dJ_dB);
+        result.add(x);
+
+        return result;
      }
     public void optimizeParameters(ArrayList<Double[]> gradients, double learningRate){
         ArrayList<double[]> weightGradientsList = new ArrayList<double[]>();
@@ -73,13 +82,6 @@ public class MultipleLinearRegression {
 
     }
 
-    /*
-     fit
-     @param x: Array de Arrays que contiene los datos de lo que serian los registros
-     @param y: Array conteniendo los volumenes conseguidos de esos registros
-     @param epochs: Cantidad de registros(?)
-     @param batchSize: es el numero de features que tiene el modelo(?)
-     */
     public void fit (ArrayList<double[]> x,double[] y, int epoch,int batchSize,Context context){
         List<List<Pair<double[],Double>>> batches = batch(x,y,batchSize);
         for (int i = 0;i < epoch;i++){
@@ -97,11 +99,8 @@ public class MultipleLinearRegression {
         }
         QueryPreferencias.guardarPesos(context,this.pesos,this.bias);
     }
-    //batch
-    //@param x: Array de Arrays que contiene los datos de lo que serian los registros
-    //@param y: Array conteniendo los volumenes conseguidos de esos registros
-    //@param batchSize: es el numero de features que tiene el modelo(?)
-    //return lista de listas de tamaño batchSize que contiene pares (array de features, volumen conseguido)
+
+
     private List<List<Pair<double[],Double>>> batch(ArrayList<double[]> x, double[] y, int batchSize){
         if (x.size() != y.length)
             throw new RuntimeException("Arrays must be same size");
@@ -166,7 +165,7 @@ public class MultipleLinearRegression {
         this.bias = datos[datos.length-1];
     }
     private double[] parseString2Double(String[] pesos){
-        double[] pesosDouble = {};
+        double[] pesosDouble = new double[pesos.length];
         for(int i = 0; i < pesos.length;i++){
             pesosDouble[i] = Double.parseDouble(pesos[i]);
         }

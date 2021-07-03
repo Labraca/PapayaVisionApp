@@ -6,6 +6,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,12 +21,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.papayavision.DBUtilities.QueryPreferencias;
 import com.example.papayavision.DBUtilities.RegRepository;
+import com.example.papayavision.DBUtilities.WeatherAPIAdapter;
+import com.example.papayavision.entidades.Municipio;
 import com.example.papayavision.entidades.Registro;
+import com.example.papayavision.regUtilities.WeatherApiUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -45,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView ubiState;
     //Google api para saber onde estamos
     private FusedLocationProviderClient fusedlocation;
-
+    private AutoCompleteTextView municipioCompleteView;
+    private WeatherAPIAdapter wApiAdapter;
+    private String[] ubi;
+    private Registro lastReg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -54,55 +73,90 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         staticLoadCVLibraries();
 
-        String[] ubi = QueryPreferencias.cargarUbicacion(getApplicationContext());
-        ubiState = findViewById(R.id.ubicacionState);
-        if((!QueryPreferencias.existeUbi(getApplicationContext()))
-                || (ubi.equals("No hay ubicación guardada"))
-                || (ubi.equals("No se consiguió determinar su ubicación"))) {
-            //crear archivo
+        wApiAdapter = WeatherAPIAdapter.getWeatherAPIAdapter(getApplication());
+        db = new RegRepository(getApplication());
 
+        ubi = QueryPreferencias.cargarUbicacion(getApplicationContext());
+        ubiState = findViewById(R.id.ubicacionState);
+
+        if(!(!QueryPreferencias.existeUbi(getApplicationContext()))
+                || (ubi[0].equals("No hay ubicación guardada"))) {
             updateGPS();
+            ubiState.setText(ubi[0]);
         }else{
-            ubiState.setText(ubi[0]+","+ubi[1]);
+            ubiState.setText(ubi[0]);
         }
 
-        db = new RegRepository(getApplication());
+        //Autocomplete
+        municipioCompleteView = (AutoCompleteTextView) findViewById(R.id.municipioCompleteView);
+        municipioCompleteView.setThreshold(1);
+        municipioCompleteView.setValidator(new AutoCompleteTextView.Validator() {
+            @Override
+            public boolean isValid(CharSequence text) {
+                return (text.length() != 0);
+            }
+
+            @Override
+            public CharSequence fixText(CharSequence invalidText) {
+                return null;
+            }
+        });
+
+        LiveData<List<String>> municipios = db.getAllNombreMuni();
+        municipios.observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> strings) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(),
+                        android.R.layout.simple_expandable_list_item_1, strings);
+                municipioCompleteView.setAdapter(adapter);
+
+            }
+        });
+
         LiveData<Registro> last = db.getLast();
         last.observe(this, new Observer<Registro>() {
             @Override
             public void onChanged(Registro registro) {
-                insertNuevosReg(registro);
+                lastReg = registro;
             }
         });
+        Calendar cal = Calendar.getInstance();
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        int daysFromMonday = dayOfWeek - cal.getFirstDayOfWeek();
+
+        PeriodicWorkRequest insertRegistros = new PeriodicWorkRequest.Builder(
+                    insertRegistrosWorker.class, 7, TimeUnit.DAYS)
+                    .setInitialDelay(7-daysFromMonday,TimeUnit.DAYS)
+                    .addTag("insertRegistrosMonday")
+                    .build();
+
+        WorkManager.getInstance(getApplicationContext())
+                .enqueueUniquePeriodicWork("insertRegistrosMonday",
+                        ExistingPeriodicWorkPolicy.KEEP,insertRegistros);
 
     }//end create
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        LiveData<Registro> last = db.getLast();
-
-        last.observe(this, new Observer<Registro>() {
-            @Override
-            public void onChanged(Registro registro) {
-                insertNuevosReg(registro);
-            }
-        });
-    }
 
     //TODO
     public void launchActivity(View v){
-        Intent i = null;
-        switch(v.getId()){
-            case R.id.toPhoto:
-                //a camara
-                //startActivity(i);
-            case R.id.toRegSem:
-                i = new Intent(getApplicationContext(),RegistrosSemanales.class);
-                startActivity(i);
-            case R.id.toRegSemAct:
-                //al primer registro
-                //startActivity(i);
+        if(!(!QueryPreferencias.existeUbi(getApplicationContext())
+        || lastReg == null
+        || lastReg.getTemp() == -1.0))
+            showPopUp(v);
+        else {
+            Intent i = null;
+            switch (v.getId()) {
+                case R.id.toPhoto:
+                    //a camara
+                    //startActivity(i);
+                case R.id.toRegSem:
+                    i = new Intent(getApplicationContext(), RegistrosSemanales.class);
+                    startActivity(i);
+                case R.id.toRegSemAct:
+                    //al primer registro
+                    //startActivity(i);
+            }
         }
     }
     private void staticLoadCVLibraries() {
@@ -111,7 +165,16 @@ public class MainActivity extends AppCompatActivity {
             Log.i("CV","Open CV Libraries loaded.");
         }
     }
+    public void setUbication(View v){
+        String municipio = municipioCompleteView.getText().toString();
 
+        Municipio m = wApiAdapter.getMunicipioByName(municipio);
+        QueryPreferencias.guardarUbicacion(getApplicationContext(),
+                municipio,m.getCodMunicipio()+"");
+
+        ubiState.setText(municipio);
+
+    }
     public void updateGPSP(View view){
         updateGPS();
     }
@@ -143,13 +206,6 @@ public class MainActivity extends AppCompatActivity {
                     putGeocode(location);
                 }
             });
-           /* fusedlocation.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    putGeocode(location);
-                }
-            });*/
         }else{
 
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -160,7 +216,29 @@ public class MainActivity extends AppCompatActivity {
         }
         findViewById(R.id.progressBar).setVisibility(View.GONE);
     }
+    private void putGeocode(Location location) {
 
+        Geocoder geocoder = new Geocoder(this);
+        String[] ubicacion;
+        try {
+
+            List<Address> addresses = geocoder
+                    .getFromLocation(location.getLatitude(),location.getLongitude(),1);
+            Address address = addresses.get(0);
+            Municipio m = wApiAdapter.getMunicipioByName(address.getLocality());
+            QueryPreferencias.guardarUbicacion(getApplicationContext(),m.getMunicipio(),m.getCodMunicipio()+"");
+
+            ubiState.setText(m.getMunicipio());
+        }catch (Exception e){
+
+            QueryPreferencias
+                    .guardarUbicacion(getApplicationContext(),"No se consiguió determinar su ubicación","");
+            ubiState.setText("No se consiguió determinar su ubicación");
+        }
+
+
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -174,53 +252,31 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    private void showPopUp(View v){
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup, null);
 
-    private void putGeocode(Location location) {
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-        Geocoder geocoder = new Geocoder(this);
-        String[] ubicacion;
-        try {
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+        // dismiss the popup window when touched
 
-            List<Address> addresses = geocoder
-                    .getFromLocation(location.getLatitude(),location.getLongitude(),1);
-            Address address = addresses.get(0);
-            QueryPreferencias.guardarUbicacion(getApplicationContext(),address.getLocality(),address.getPostalCode());
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
 
-        }catch (Exception e){
-
-            QueryPreferencias
-                    .guardarUbicacion(getApplicationContext(),"No se consiguió determinar su ubicación","");
-
-        }
-        ubicacion = QueryPreferencias.cargarUbicacion(getApplicationContext());
-
-        ubiState.setText(ubicacion[0]+","+ubicacion[1]);
-    }
-
-
-    private void insertNuevosReg(Registro last) {
-        Date currentDate = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setFirstDayOfWeek(cal.MONDAY);
-        Date lastConnection = last.getInicioFecha();
-        cal.setTime(lastConnection);
-
-        int currentADias = (int) TimeUnit.MILLISECONDS.toDays(currentDate.getTime());
-        int lastConnectADias = (int) TimeUnit.MILLISECONDS.toDays(lastConnection.getTime());
-
-        int weeksSinceConnection = (currentADias - lastConnectADias) / 7;
-
-        for (int i = 0; i < weeksSinceConnection; i++) {
-            cal.add(Calendar.DAY_OF_WEEK, 7);
-            Registro reg = new Registro(0, cal.getTime());
-            db.insert(reg);
-        }
-        /*else{
-            int diffDays = cal.getFirstDayOfWeek() -  cal.get(Calendar.DAY_OF_WEEK);
-            cal.add(Calendar.DAY_OF_WEEK,diffDays);
-            Registro reg = new Registro(0,cal.getTime());
-            db.insert(reg);
-        }*/
+        });
     }
 
 

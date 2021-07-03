@@ -1,5 +1,6 @@
 package com.example.papayavision.DBUtilities;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetManager;
 
@@ -11,6 +12,7 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.papayavision.entidades.Foto;
+import com.example.papayavision.entidades.FotosDao;
 import com.example.papayavision.entidades.Municipio;
 import com.example.papayavision.entidades.MunicipioDAO;
 import com.example.papayavision.entidades.Registro;
@@ -34,6 +36,8 @@ public abstract class AppDatabase extends RoomDatabase {
     //DAO para los registros
     public abstract RegistroDao registroDao();
     public abstract MunicipioDAO municipioDAO();
+    public abstract FotosDao fotosDao();
+    public static WeatherAPIAdapter wAPIAdapter;
     //Instancia unica para la BBDD
     private static volatile AppDatabase INSTANCIA;
     private static AssetManager am;
@@ -42,7 +46,7 @@ public abstract class AppDatabase extends RoomDatabase {
             Executors.newCachedThreadPool();
 
     // Acceso a la Instancia
-    static AppDatabase getDatabase(final Context context) {
+    public static AppDatabase getDatabase(final Context context) {
         if (INSTANCIA == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCIA == null) {
@@ -51,6 +55,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                     am = context.getAssets();
+                    wAPIAdapter = WeatherAPIAdapter.getWeatherAPIAdapter((Application)context.getApplicationContext());
                 }
             }
         }
@@ -72,6 +77,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
                 RegistroDao registroDao = INSTANCIA.registroDao();
                 MunicipioDAO municipioDAO = INSTANCIA.municipioDAO();
+
                 List<Municipio> municipios= null;
                 try {
                     municipios = parseMuniToList();
@@ -80,6 +86,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 }
                 municipioDAO.insertAll(municipios);
                 Registro reg = new Registro(0, cal.getTime());
+
                 registroDao.insertRegistros(reg);
             });
         }
@@ -107,5 +114,7 @@ public abstract class AppDatabase extends RoomDatabase {
         f.close();
         return municipios;
     }
+
+
 }
 

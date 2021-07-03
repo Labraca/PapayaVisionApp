@@ -44,18 +44,18 @@
             android:visibility="gone" />
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+            android:id="@+id/municipioCompleteView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:completionHint="Seleccione su localidad"
             android:completionThreshold="3"
-            android:hint="Selecicone su localidad"
-            android:text="AutoCompleteTextView" />
+            android:hint="Selecicone su localidad" />
 
         <Button
             android:id="@+id/saveLoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="setUbication"
             android:text="Guardar" />
 
         <Button

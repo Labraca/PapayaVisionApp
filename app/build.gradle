@@ -83,5 +83,9 @@ dependencies {
     implementation "androidx.camera:camera-extensions:1.0.0-alpha24"
 
     implementation("com.google.guava:guava:30.1.1-android")
+    def work_version = "2.5.0"
 
+
+    implementation "androidx.work:work-runtime:$work_version"
+    implementation group: 'com.github.cliftonlabs', name: 'json-simple', version: '3.1.1'
 }

@@ -34,7 +34,6 @@ import org.opencv.android.OpenCVLoader;
 public class RegDetalles extends AppCompatActivity {
     private RegRepository regRepo;
     private Registro registroHost;
-    private TextView volReg,volEstimado,tempActual,hrelActual,tempPrxSem,hrelPrxSem;
     private RegistroViewModel viewModel;
     private String TAG="CV";
     private Boolean inflatedOnce = false;
@@ -57,15 +56,18 @@ public class RegDetalles extends AppCompatActivity {
 
             }
         }
+
         regRepo = new RegRepository(getApplication());
         int idReg = getIntent().getIntExtra("idReg", Integer.MIN_VALUE);
-        //TODO: AQUI ESTA EL PROBLEMA DE QUE SE AÑADA EL LAYOUT
+
         LiveData<Registro> reg = regRepo.getRegById(idReg);
+
         reg.observe(this, new Observer<Registro>() {
             @Override
             public void onChanged(Registro registro) {
                 registroHost = registro;
                 viewModel.selectItem(registro);
+                //volReg.setText(registroHost.getVolumen()+"t");
 
                 if (savedInstanceState == null && !inflatedOnce) {
                     setInflatedOnce(true);
@@ -120,5 +122,11 @@ public class RegDetalles extends AppCompatActivity {
     }
     private void setInflatedOnce(Boolean bool){
         this.inflatedOnce = bool;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        inflatedOnce = false;
     }
 }

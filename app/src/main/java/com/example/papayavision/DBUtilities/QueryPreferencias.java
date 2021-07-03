@@ -21,12 +21,12 @@ public class QueryPreferencias {
         SharedPreferences preferences = c.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         String[] loc_Cod = new String[2];
         loc_Cod[0] = preferences.getString("Localidad","No hay ubicación guardada");
-        loc_Cod[1] = preferences.getString("CodPostal","No hay ubicación guardada");
+        loc_Cod[1] = preferences.getString("CodMun","-1");
         return loc_Cod;
     }
     public static boolean existeUbi(Context c){
         SharedPreferences preferences = c.getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        return preferences.contains("Localidad") && preferences.contains("CodPostal");
+        return (preferences.contains("Localidad") && preferences.contains("CodPostal")) || !cargarUbicacion(c)[1].equals("-1");
     }
     public static String[] cargarPesos(Context c) {
         SharedPreferences preferences = c.getSharedPreferences("regression", Context.MODE_PRIVATE);
@@ -36,7 +36,7 @@ public class QueryPreferencias {
             double defVal = x.nextDouble();
             pesosBias[i] = preferences.getString("X"+i,Double.toString(defVal));
         }
-        pesosBias[6] = preferences.getString("bias",Double.toString(x.nextDouble()));
+        pesosBias[5] = preferences.getString("bias",Double.toString(x.nextDouble()));
         return pesosBias;
     }
     public static void guardarPesos(Context c, double[] pesos,double bias) {
@@ -48,5 +48,18 @@ public class QueryPreferencias {
         }
         editor.putString("bias",Double.toString(bias));
         editor.commit();
+    }
+    public static void guardarEstimacion(Context c,int estimacion) {
+        SharedPreferences preferences = c.getSharedPreferences("estimacion", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("estimacion",Integer.toString(estimacion));
+        editor.commit();
+    }
+    public static String cargarEstimacion(Context c) {
+        SharedPreferences preferences = c.getSharedPreferences("estimacion", Context.MODE_PRIVATE);
+
+        return  preferences.getString("estimacion","0");
     }
 }

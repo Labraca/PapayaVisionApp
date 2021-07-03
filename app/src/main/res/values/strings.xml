@@ -4,7 +4,7 @@
     <string name="fechas"></string>
     <string name="ubicacionState">[No se pudo determinar su ubicacion]</string>
     <string name="volActual"></string>
-    <string name="estimacion">0kg</string>
+    <string name="estimacion"></string>
     <string name="tempActual">-</string>
     <string name="hrelActual">-</string>
     <string name="tempPrxSem">-</string>

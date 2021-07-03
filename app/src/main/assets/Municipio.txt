@@ -1,746 +1,785 @@
-6302A;Abla
-6302A;Abrucena
-6277B;Adra
-6364X;Albánchez
-6302A;Alboloduy
-6364X;Albox
-6307X;Alcolea
-5047E;Alcóntar
-6364X;Alcudia de Monteagud
-6302A;Alhabia
-6325O;Alhama de Almería
-6302A;Alicún
-6325O;Almería
-6307X;Almócita
-6302A;Alsodux
-6340X;Antas
-6364X;Arboleas
-6364X;Armuña de Almanzora
-6364X;Bacares
-6291B;Balanegra
-6281X;Bayárcal
-6364X;Bayarque
-6340X;Bédar
-6307X;Beires
-6325O;Benahadux
-6364X;Benitagla
-6364X;Benizalón
-6302A;Bentarique
-6277B;Berja
-6302A;Canjáyar
-6364X;Cantoria
-6340X;Carboneras
-6302A;Castro de Filabres
-6364X;Chercos
-6364X;Chirivel
-6364X;Cóbdar
-6367B;Cuevas del Almanzora
-6291B;Dalías
-6291B;Ejido
-6291B;Enix
-6291B;Felix
-6364X;Fines
-6302A;Fiñana
-6307X;Fondón
-6325O;Gádor
-6340X;Gallardos
-6340X;Garrucha
-6302A;Gérgal
-6302A;Huécija
-6325O;Huércal de Almería
-6367B;Huércal-Overa
-6302A;Íllar
-6302A;Instinción
-6364X;Laroya
-6307X;Láujar de Andarax
-6364X;Líjar
-6367B;Lubrín
-6325O;Lucainena de las Torres
-6364X;Lúcar
-6364X;Macael
-2135A;María
-6340X;Mojácar
-6293X;Mojonera
-6302A;Nacimiento
-6325O;Níjar
-6302A;Ohanes
-6302A;Olula de Castro
-6364X;Olula del Río
-1021X;Oria
-6307X;Padules
-6364X;Partaloa
-6307X;Paterna del Río
-6325O;Pechina
-7002Y;Pulpí
-6364X;Purchena
-6302A;Rágol
-9121X;Rioja
-6293X;Roquetas de Mar
-6302A;Santa Cruz de Marchena
-6325O;Santa Fe de Mondújar
-6364X;Senés
-5047E;Serón
-6364X;Sierro
-6364X;Somontín
-6340X;Sorbas
-6364X;Suflí
-6325O;Tabernas
-6364X;Taberno
-6364X;Tahal
-6302A;Terque
-6364X;Tíjola
-6302A;Tres Villas
-6340X;Turre
-6325O;Turrillas
-6364X;Uleila del Campo
-6364X;Urrácal
-6364X;Velefique
-5060X;Vélez-Blanco
-7211B;Vélez-Rubio
-3436D;Vera
-6325O;Viator
-9344C;Vícar
-6367B;Zurgena
-5983X;Alcalá de los Gazules
-5919X;Alcalá del Valle
-5950X;Algar
-5911A;Algodonales
-5950X;Arcos de la Frontera
-5996B;Barbate
-6056X;Barrios
-5983X;Benalup-Casas Viejas
-5911A;Benaocaz
-5950X;Bornos
-5941X;Bosque
-6042I;Castellar de la Frontera
-5972X;Chiclana de la Frontera
-5906X;Chipiona
-5995B;Conil de la Frontera
-5891X;Espera
-5919X;Gastor
-5911A;Grazalema
-6042I;Jimena de la Frontera
-6056X;Línea de la Concepción
-5983X;Medina-Sidonia
-5919X;Olvera
-5983X;Paterna de Rivera
-5941X;Prado del Rey
-5910X;Puerto de Santa María
-5941X;Puerto Serrano
-5910X;Rota
-5972X;San Fernando
-5950X;San José del Valle
-1390X;San Roque
-5906X;Sanlúcar de Barrameda
-5919X;Setenil de las Bodegas
-5919X;Torre Alháquime
-5941X;Ubrique
-5995B;Vejer de la Frontera
-5911A;Villaluenga del Rosario
-5941X;Villamartín
-5911A;Zahara
-5361X;Adamuz
-5624X;Aguilar de la Frontera
-4267X;Alcaracejos
-5412X;Almedinilla
-4267X;Añora
-5427X;Baena
-4267X;Belalcázar
-4263X;Belmez
-5598X;Benamejí
-4263X;Blázquez
-5429X;Bujalance
-5427X;Cabra
-5429X;Cañete de las Torres
-5412X;Carcabuey
-9141V;Cardeña
-5625X;Carlota
-2517A;Carpio
-5429X;Castro del Río
-5390Y;Conquista
-5427X;Doña Mencía
-4267X;Dos Torres
-5598X;Encinas Reales
-5429X;Espejo
-5459X;Espiel
-5625X;Fernán-Núñez
-4267X;Fuente la Lancha
-4263X;Fuente Obejuna
-5412X;Fuente-Tójar
-4263X;Granjuela
-5390Y;Guijo
-4267X;Hinojosa del Duque
-5654X;Hornachuelos
-5598X;Iznájar
-8492X;Lucena
-5427X;Luque
-5625X;Montalbán de Córdoba
-3504X;Montemayor
-5625X;Montilla
-5361X;Montoro
-5624X;Monturque
-5624X;Moriles
-5427X;Nueva Carteya
-5459X;Obejo
-5598X;Palenciana
-5654X;Palma del Río
-5361X;Pedro Abad
-5390Y;Pedroche
-4263X;Peñarroya-Pueblonuevo
-2456B;Posadas
-5390Y;Pozoblanco
-5412X;Priego de Córdoba
-5624X;Puente Genil
-5625X;Rambla
-5598X;Rute
-5625X;San Sebastián de los Ballesteros
-4300Y;Santa Eufemia
-5625X;Santaella
-5390Y;Torrecampo
-5429X;Valenzuela
-4263X;Valsequillo
-1089U;Victoria
-5361X;Villa del Río
-5429X;Villafranca de Córdoba
-5459X;Villaharta
-5390Y;Villanueva de Córdoba
-4267X;Villanueva del Duque
-5459X;Villanueva del Rey
-4267X;Villaralto
-5459X;Villaviciosa de Córdoba
-4267X;Viso
-5427X;Zuheros
-5530E;Agrón
-5165X;Alamedilla
-5515X;Albolote
-6272X;Albondón
-5107D;Albuñán
-6277B;Albuñol
-6258X;Albuñuelas
-5107D;Aldeire
-5515D;Alfacar
-5412X;Algarinejo
-5530E;Alhama de Granada
-5514Z;Alhendín
-5038Y;Alicún de Ortega
-6258X;Almegíjar
-6267X;Almuñécar
-6281X;Alpujarra de la Sierra
-5107D;Alquife
-6213X;Arenas del Rey
-5514Z;Armilla
-5515X;Atarfe
-5047E;Baza
-5515D;Beas de Granada
-5107D;Beas de Guadix
-5107D;Benalúa
-5406X;Benalúa de las Villas
-5047E;Benamaurel
-6281X;Bérchules
-6258X;Bubión
-6258X;Busquístar
-5530E;Cacín
-6281X;Cádiar
-5514Z;Cájar
-9293X;Calahorra
-5515D;Calicasas
-5406X;Campotéjar
-5047E;Caniles
-6258X;Cáñar
-6258X;Capileira
-6258X;Carataunas
-6281X;Cástaras
-5047E;Castilléjar
-5038Y;Castril
-5515X;Cenes de la Vega
-5530E;Chauchina
-5530E;Chimeneas
-5514Z;Churriana de la Vega
-5530E;Cijuela
-5107D;Cogollos de Guadix
-5515D;Cogollos de la Vega
-5530E;Colomera
-5047E;Cortes de Baza
-5107D;Cortes y Graena
-5047E;Cuevas del Campo
-5047E;Cúllar
-5514Z;Cúllar Vega
-5515D;Darro
-5047E;Dehesas de Guadix
-5515D;Dehesas Viejas
-5515D;Deifontes
-5515D;Diezma
-5514Z;Dílar
-5107D;Dólar
-5515D;Domingo Pérez de Granada
-5515D;Dúdar
-6258X;Dúrcal
-5514Z;Escúzar
-5107D;Ferreira
-5107D;Fonelas
-5047E;Freila
-5530E;Fuente Vaqueros
-5514Z;Gabias
-5047E;Galera
-5515D;Gobernador
-5514Z;Gójar
-0066X;Gor
-5047E;Gorafe
-5530E;Granada
-5165X;Guadahortuna
-5107D;Guadix
-6267X;Guájares
-6272X;Gualchos
-5515D;Güéjar Sierra
-5515D;Güevéjar
-5515D;Huélago
-5107D;Huéneja
-5060X;Huéscar
-5515D;Huétor de Santillán
-5530E;Huétor Tájar
-5515X;Huétor Vega
-5530E;Íllora
-6267X;Ítrabo
-5515D;Iznalloz
-6213X;Játar
-6213X;Jayena
-5107D;Jérez del Marquesado
-6267X;Jete
-4090Y;Jun
-6281X;Juviles
-5530E;Láchar
-6258X;Lanjarón
-5107D;Lanteira
-6258X;Lecrín
-6267X;Lentegí
-6281X;Lobras
-5530E;Loja
-5107D;Lugros
-6272X;Lújar
-5514Z;Malahá
-5515X;Maracena
-5107D;Marchal
-5530E;Moclín
-6267X;Molvízar
-5515X;Monachil
-5406X;Montefrío
-5165X;Montejícar
-5406X;Montillana
-5530E;Moraleda de Zafayona
-5515D;Morelábor
-6268Y;Motril
-6281X;Murtas
-6281X;Nevada
-6258X;Nigüelas
-5515D;Nívar
-5514Z;Ogíjares
-5060X;Orce
-6258X;Órgiva
-6267X;Otívar
-5514Z;Padul
-6258X;Pampaneira
-5515D;Pedro Martínez
-5515X;Peligros
-5515D;Peza
-3130C;Pinar
-5515D;Pinos Genil
-5530E;Pinos Puente
-3130C;Píñar
-5107D;Polícar
-6272X;Polopos
-6258X;Pórtugos
-5060X;Puebla de Don Fadrique
-5515X;Pulianas
-5107D;Purullena
-5515D;Quéntar
-6272X;Rubite
-9990X;Salar
-6267X;Salobreña
-5530E;Santa Cruz del Comercio
-2135A;Santa Fe
-6258X;Soportújar
-6272X;Sorvilán
-6258X;Taha
-5515D;Torre-Cardela
-6272X;Torvizcón
-6281X;Trevélez
-6277B;Turón
-6281X;Ugíjar
-5530E;Valderrubio
-3104Y;Valle
-5107D;Valle del Zalabí
-6281X;Válor
-5514Z;Vegas del Genil
-6258X;Vélez de Benaudalla
-5530E;Ventas de Huelma
-5514Z;Villa de Otura
-6258X;Villamena
-5047E;Villanueva de las Torres
-5530E;Villanueva Mesía
-5515D;Víznar
-6199B;Zafarraya
-5412X;Zagra
-1064L;Zubia
-5047E;Zújar
-4560Y;Alájar
-4554X;Aljaraque
-4589X;Almendro
-4560Y;Almonaster la Real
-5858X;Almonte
-4589X;Alosno
-4560Y;Aracena
-4527X;Aroche
-5769X;Arroyomolinos de León
-4549Y;Ayamonte
-4622X;Beas
-4608X;Berrocal
-4622X;Bollullos Par del Condado
-4622X;Bonares
-4584X;Cabezas Rubias
-4584X;Calañas
-4608X;Campillo
-4608X;Campofrío
-5769X;Cañaveral de León
-4554X;Cartaya
-4560Y;Castaño del Robledo
-4584X;Cerro de Andévalo
-5835X;Chucena
-4560Y;Corteconcepción
-4560Y;Cortegana
-4560Y;Cortelazor
-4520X;Cumbres de Enmedio
-4520X;Cumbres de San Bartolomé
-4520X;Cumbres Mayores
-4520X;Encinasola
-5835X;Escacena del Campo
-4560Y;Fuenteheridos
-4560Y;Galaroza
-4642E;Gibraleón
-4608X;Granada de Río-Tinto
-4541X;Granado
-5769X;Higuera de la Sierra
-4560Y;Hinojales
-5835X;Hinojos
-4642E;Huelva
-4549Y;Isla Cristina
-4560Y;Jabugo
-4554X;Lepe
-4560Y;Linares de la Sierra
-4642E;Lucena del Puerto
-5835X;Manzanilla
-8409X;Marines
-4608X;Minas de Riotinto
-5860E;Moguer
-2400E;Nava
-4608X;Nerva
-4622X;Niebla
-4622X;Palma del Condado
-4642E;Palos de la Frontera
-5835X;Paterna del Campo
-4589X;Paymogo
-4589X;Puebla de Guzmán
-5769X;Puerto Moral
-4642E;Punta Umbría
-4622X;Rociana del Condado
-4527X;Rosal de la Frontera
-4589X;San Bartolomé de la Torre
-4642E;San Juan del Puerto
-4549Y;San Silvestre de Guzmán
-4541X;Sanlúcar de Guadiana
-4560Y;Santa Ana la Real
-4584X;Santa Bárbara de Casa
-5769X;Santa Olalla del Cala
-2400E;Trigueros
-4560Y;Valdelarco
-4575X;Valverde del Camino
-4549Y;Villablanca
-5835X;Villalba del Alcor
-4589X;Villanueva de las Cruces
-4589X;Villanueva de los Castillejos
-4622X;Villarrasa
-4608X;Zalamea la Real
-5769X;Zufre
-5165X;Albanchez de Mágina
-5406X;Alcalá la Real
-5412X;Alcaudete
-5298X;Andújar
-5298X;Arjona
-5298X;Arjonilla
-5279X;Arquillos
-5181D;Arroyo del Ojanco
-5164B;Baeza
-5281X;Bailén
-5281X;Baños de la Encina
-5181D;Beas de Segura
-5165X;Bedmar y Garcíez
-5164B;Begíjar
-5165X;Bélmez de la Moraleda
-5181D;Benatae
-5165X;Cabra del Santo Cristo
-5165X;Cambil
-5406X;Campillo de Arenas
-5164B;Canena
-5279X;Carboneros
-5165X;Cárcheles
-5210X;Castellar
-5406X;Castillo de Locubín
-5281X;Cazalilla
-5038Y;Cazorla
-5181D;Chiclana de Segura
-5038Y;Chilluévar
-5298X;Escañuela
-5281X;Espeluy
-5406X;Frailes
-5406X;Fuensanta de Martos
-5270B;Fuerte del Rey
-5181D;Génave
-5270B;Guardia de Jaén
-5279X;Guarromán
-5298X;Higuera de Calatrava
-5038Y;Hinojares
-5181D;Hornos
-5165X;Huelma
-5038Y;Huesa
-5164B;Ibros
-5038Y;Iruela
-5210X;Iznatoraf
-5281X;Jabalquinto
-5270B;Jaén
-5270B;Jamilena
-5165X;Jimena
-5164B;Jódar
-5298X;Lahiguera
-5038Y;Larva
-1083B;Linares
-5361X;Lopera
-5164B;Lupión
-5165X;Mancha Real
-5298X;Marmolejo
-5406X;Martos
-5281X;Mengíbar
-5181D;Montizón
-5164B;Navas de San Juan
-5406X;Noalejo
-5181D;Orcera
-5038Y;Peal de Becerro
-5165X;Pegalajar
-5298X;Porcuna
-5038Y;Pozo Alcón
-5181D;Puente de Génave
-5181D;Puerta de Segura
-5038Y;Quesada
-5164B;Rus
-5164B;Sabiote
-5429X;Santiago de Calatrava
-7072Y;Santiago-Pontones
-5210X;Santisteban del Puerto
-5038Y;Santo Tomé
-5181D;Segura de la Sierra
-7072Y;Siles
-5210X;Sorihuela del Guadalimar
-5164B;Torreblascopedro
-5270B;Torredelcampo
-5270B;Torredonjimeno
-5164B;Torreperogil
-2374X;Torres
-5181D;Torres de Albánchez
-5164B;Úbeda
-5406X;Valdepeñas de Jaén
-5279X;Vilches
-5210X;Villacarrillo
-5298X;Villanueva de la Reina
-5210X;Villanueva del Arzobispo
-5270B;Villardompardo
-5270B;Villares
-5181D;Villarrodrigo
-5281X;Villatorres
-5612B;Alameda
-6199B;Alcaucín
-6199B;Alfarnate
-6199B;Alfarnatejo
-6201X;Algarrobo
-6050X;Algatocín
-6088X;Alhaurín de la Torre
-6143X;Alhaurín el Grande
-6199B;Almáchar
-5919X;Almargen
-6156X;Almogía
-6127X;Álora
-6143X;Alozaina
-6045X;Alpandeire
-6106X;Antequera
-6201X;Árchez
-5598X;Archidona
-6127X;Ardales
-6199B;Arenas
-6032X;Arriate
-6045X;Atajate
-6045X;Benadalid
-6069X;Benahavís
-6045X;Benalauría
-6088X;Benalmádena
-6199B;Benamargosa
-6199B;Benamocarra
-6032X;Benaoján
-6050X;Benarrabá
-6175X;Borge
-6032X;Burgo
-6106X;Campillos
-6199B;Canillas de Aceituno
-6201X;Canillas de Albaida
-5919X;Cañete la Real
-6127X;Carratraca
-6045X;Cartajima
-6143X;Cártama
-6172O;Casabermeja
-6127X;Casarabonela
-6057X;Casares
-6143X;Coín
-6175X;Colmenar
-6175X;Comares
-6201X;Cómpeta
-6040X;Cortes de la Frontera
-5598X;Cuevas Bajas
-5598X;Cuevas de San Marcos
-6032X;Cuevas del Becerro
-6199B;Cútar
-6058I;Estepona
-6045X;Faraján
-6213X;Frigiliana
-6084X;Fuengirola
-6375X;Fuente de Piedra
-6050X;Gaucín
-6050X;Genalguacil
-6143X;Guaro
-6375X;Humilladero
-6045X;Igualeja
-6069X;Istán
-6199B;Iznate
-6045X;Jimera de Líbar
-6045X;Jubrique
-6045X;Júzcar
-6175X;Macharaviaya
-6172O;Málaga
-6057X;Manilva
-6076X;Marbella
-6084X;Mijas
-6175X;Moclinejo
-6375X;Mollina
-6143X;Monda
-5911A;Montecorto
-6032X;Montejaque
-6213X;Nerja
-6076X;Ojén
-6045X;Parauta
-6199B;Periana
-6127X;Pizarra
-6045X;Pujerra
-6175X;Rincón de la Victoria
-6175X;Riogordo
-6032X;Ronda
-6199B;Salares
-6201X;Sayalonga
-6199B;Sedella
-6032X;Serrato
-6375X;Sierra de Yeguas
-6106X;Teba
-6143X;Tolox
-6088X;Torremolinos
-6201X;Torrox
-6175X;Totalán
-6127X;Valle de Abdalajís
-6199B;Vélez-Málaga
-5598X;Villanueva de Algaidas
-6127X;Villanueva de la Concepción
-5598X;Villanueva de Tapia
-5598X;Villanueva del Rosario
-5598X;Villanueva del Trabuco
-6199B;Viñuela
-6143X;Yunquera
-5998X;Aguadulce
-5726X;Alanís
-5788X;Albaida del Aljarafe
-5702X;Alcolea del Río
-5790Y;Algaba
-5919X;Algámitas
-5733X;Almadén de la Plata
-5788X;Almensilla
-5835X;Aznalcázar
-5835X;Aznalcóllar
-5598X;Badolatosa
-5835X;Benacazón
-5788X;Bollullos de la Mitación
-5788X;Bormujos
-5702X;Brenes
-5702X;Burguillos
-5891X;Cabezas de San Juan
-5790Y;Camas
-5702X;Cantillana
-5641X;Cañada Rosal
-5702X;Carmona
-5835X;Carrión de los Céspedes
-5612X;Casariche
-5733X;Castilblanco de los Arroyos
-5788X;Castilleja de Guzmán
-5788X;Castilleja de la Cuesta
-5835X;Castilleja del Campo
-5733X;Castillo de las Guardas
-5704B;Cazalla de la Sierra
-5704B;Constantina
-5788X;Coria del Río
-5919X;Coripe
-5998X;Corrales
-5790Y;Dos Hermanas
-5641X;Écija
-5788X;Espartinas
-5612X;Estepa
-5733X;Garrobo
-5790Y;Gelves
-5788X;Gerena
-5612X;Gilena
-5788X;Gines
-5726X;Guadalcanal
-5788X;Guillena
-5612X;Herrera
-5835X;Huévar del Aljarafe
-5788X;Isla Mayor
-5998X;Lantejuela
-5612X;Lora de Estepa
-5641X;Luisiana
-4608X;Madroño
-5788X;Mairena del Aljarafe
-5612X;Marinaleda
-5612B;Martín de la Jara
-5654X;Navas de la Concepción
-5788X;Olivares
-5998X;Osuna
-5891X;Palacios y Villafranca
-5788X;Palomares del Río
-5612X;Pedrera
-9141V;Pedroso
-5654X;Peñaflor
-5835X;Pilas
-5919X;Pruna
-5998X;Puebla de Cazalla
-5654X;Puebla de los Infantes
-5788X;Puebla del Río
-5769X;Real de la Jara
-2918Y;Rinconada
-5612B;Roda de Andalucía
-5733X;Ronquillo
-8177A;Rubio
-5788X;Salteras
-5790Y;San Juan de Aznalfarache
-5704B;San Nicolás del Puerto
-5835X;Sanlúcar la Mayor
-5790Y;Santiponce
-5998X;Saucejo
-5702X;Tocina
-5788X;Tomares
-5788X;Umbrete
-5788X;Valencina de la Concepción
-5835X;Villamanrique de la Condesa
-5919X;Villanueva de San Juan
-5788X;Villanueva del Ariscal
-5702X;Villanueva del Río y Minas
-5702X;Villaverde del Río
+04001;Abla
+04002;Abrucena
+04003;Adra
+04004;Albanchez
+04005;Alboloduy
+04006;Albox
+04007;Alcolea
+04008;Alcóntar
+04009;Alcudia de Monteagud
+04010;Alhabia
+04011;Alhama de Almería
+04012;Alicún
+04013;Almería
+04014;Almócita
+04015;Alsodux
+04016;Antas
+04017;Arboleas
+04018;Armuña de Almanzora
+04019;Bacares
+04904;Balanegra
+04020;Bayárcal
+04021;Bayarque
+04022;Bédar
+04023;Beires
+04024;Benahadux
+04026;Benitagla
+04027;Benizalón
+04028;Bentarique
+04029;Berja
+04030;Canjáyar
+04031;Cantoria
+04032;Carboneras
+04033;Castro de Filabres
+04036;Chercos
+04037;Chirivel
+04034;Cóbdar
+04035;Cuevas del Almanzora
+04038;Dalías
+04902;Ejido, El
+04041;Enix
+04043;Felix
+04044;Fines
+04045;Fiñana
+04046;Fondón
+04047;Gádor
+04048;Gallardos, Los
+04049;Garrucha
+04050;Gérgal
+04051;Huécija
+04052;Huércal de Almería
+04053;Huércal-Overa
+04054;Íllar
+04055;Instinción
+04056;Laroya
+04057;Láujar de Andarax
+04058;Líjar
+04059;Lubrín
+04060;Lucainena de las Torres
+04061;Lúcar
+04062;Macael
+04063;María
+04064;Mojácar
+04903;Mojonera, La
+04065;Nacimiento
+04066;Níjar
+04067;Ohanes
+04068;Olula de Castro
+04069;Olula del Río
+04070;Oria
+04071;Padules
+04072;Partaloa
+04073;Paterna del Río
+04074;Pechina
+04075;Pulpí
+04076;Purchena
+04077;Rágol
+04078;Rioja
+04079;Roquetas de Mar
+04080;Santa Cruz de Marchena
+04081;Santa Fe de Mondújar
+04082;Senés
+04083;Serón
+04084;Sierro
+04085;Somontín
+04086;Sorbas
+04087;Suflí
+04088;Tabernas
+04089;Taberno
+04090;Tahal
+04091;Terque
+04092;Tíjola
+04901;Tres Villas, Las
+04093;Turre
+04094;Turrillas
+04095;Uleila del Campo
+04096;Urrácal
+04097;Velefique
+04098;Vélez-Blanco
+04099;Vélez-Rubio
+04100;Vera
+04101;Viator
+04102;Vícar
+04103;Zurgena
+11001;Alcalá de los Gazules
+11002;Alcalá del Valle
+11003;Algar
+11004;Algeciras
+11005;Algodonales
+11006;Arcos de la Frontera
+11007;Barbate
+11008;Barrios, Los
+11901;Benalup-Casas Viejas
+11009;Benaocaz
+11010;Bornos
+11011;Bosque, El
+11012;Cádiz
+11013;Castellar de la Frontera
+11015;Chiclana de la Frontera
+11016;Chipiona
+11014;Conil de la Frontera
+11017;Espera
+11018;Gastor, El
+11019;Grazalema
+11020;Jerez de la Frontera
+11021;Jimena de la Frontera
+11022;Línea de la Concepción, La
+11023;Medina Sidonia
+11024;Olvera
+11025;Paterna de Rivera
+11026;Prado del Rey
+11027;Puerto de Santa María, El
+11028;Puerto Real
+11029;Puerto Serrano
+11030;Rota
+11031;San Fernando
+11902;San José del Valle
+11903;San Martín del Tesorillo
+11033;San Roque
+11032;Sanlúcar de Barrameda
+11034;Setenil de las Bodegas
+11035;Tarifa
+11036;Torre Alháquime
+11037;Trebujena
+11038;Ubrique
+11039;Vejer de la Frontera
+11040;Villaluenga del Rosario
+11041;Villamartín
+11042;Zahara
+14001;Adamuz
+14002;Aguilar de la Frontera
+14003;Alcaracejos
+14004;Almedinilla
+14005;Almodóvar del Río
+14006;Añora
+14007;Baena
+14008;Belalcázar
+14009;Belmez
+14010;Benamejí
+14011;Blázquez, Los
+14012;Bujalance
+14013;Cabra
+14014;Cañete de las Torres
+14015;Carcabuey
+14016;Cardeña
+14017;Carlota, La
+14018;Carpio, El
+14019;Castro del Río
+14020;Conquista
+14021;Córdoba
+14022;Doña Mencía
+14023;Dos Torres
+14024;Encinas Reales
+14025;Espejo
+14026;Espiel
+14027;Fernán-Núñez
+14901;Fuente Carreteros
+14028;Fuente la Lancha
+14029;Fuente Obejuna
+14030;Fuente Palmera
+14031;Fuente-Tójar
+14032;Granjuela, La
+14033;Guadalcázar
+14902;Guijarrosa, La
+14034;Guijo, El
+14035;Hinojosa del Duque
+14036;Hornachuelos
+14037;Iznájar
+14038;Lucena
+14039;Luque
+14040;Montalbán de Córdoba
+14041;Montemayor
+14042;Montilla
+14043;Montoro
+14044;Monturque
+14045;Moriles
+14046;Nueva Carteya
+14047;Obejo
+14048;Palenciana
+14049;Palma del Río
+14050;Pedro Abad
+14051;Pedroche
+14052;Peñarroya-Pueblonuevo
+14053;Posadas
+14054;Pozoblanco
+14055;Priego de Córdoba
+14056;Puente Genil
+14057;Rambla, La
+14058;Rute
+14059;San Sebastián de los Ballesteros
+14061;Santa Eufemia
+14060;Santaella
+14062;Torrecampo
+14063;Valenzuela
+14064;Valsequillo
+14065;Victoria, La
+14066;Villa del Río
+14067;Villafranca de Córdoba
+14068;Villaharta
+14069;Villanueva de Córdoba
+14070;Villanueva del Duque
+14071;Villanueva del Rey
+14072;Villaralto
+14073;Villaviciosa de Córdoba
+14074;Viso, El
+14075;Zuheros
+18001;Agrón
+18002;Alamedilla
+18003;Albolote
+18004;Albondón
+18005;Albuñán
+18006;Albuñol
+18007;Albuñuelas
+18010;Aldeire
+18011;Alfacar
+18012;Algarinejo
+18013;Alhama de Granada
+18014;Alhendín
+18015;Alicún de Ortega
+18016;Almegíjar
+18017;Almuñécar
+18904;Alpujarra de la Sierra
+18018;Alquife
+18020;Arenas del Rey
+18021;Armilla
+18022;Atarfe
+18023;Baza
+18024;Beas de Granada
+18025;Beas de Guadix
+18027;Benalúa
+18028;Benalúa de las Villas
+18029;Benamaurel
+18030;Bérchules
+18032;Bubión
+18033;Busquístar
+18034;Cacín
+18035;Cádiar
+18036;Cájar
+18114;Calahorra, La
+18037;Calicasas
+18038;Campotéjar
+18039;Caniles
+18040;Cáñar
+18042;Capileira
+18043;Carataunas
+18044;Cástaras
+18045;Castilléjar
+18046;Castril
+18047;Cenes de la Vega
+18059;Chauchina
+18061;Chimeneas
+18062;Churriana de la Vega
+18048;Cijuela
+18049;Cogollos de Guadix
+18050;Cogollos de la Vega
+18051;Colomera
+18053;Cortes de Baza
+18054;Cortes y Graena
+18912;Cuevas del Campo
+18056;Cúllar
+18057;Cúllar Vega
+18063;Darro
+18064;Dehesas de Guadix
+18065;Dehesas Viejas
+18066;Deifontes
+18067;Diezma
+18068;Dílar
+18069;Dólar
+18915;Domingo Pérez de Granada
+18070;Dúdar
+18071;Dúrcal
+18072;Escúzar
+18074;Ferreira
+18076;Fonelas
+18077;Fornes
+18078;Freila
+18079;Fuente Vaqueros
+18905;Gabias, Las
+18082;Galera
+18083;Gobernador
+18084;Gójar
+18085;Gor
+18086;Gorafe
+18087;Granada
+18088;Guadahortuna
+18089;Guadix
+18906;Guájares, Los
+18093;Gualchos
+18094;Güéjar Sierra
+18095;Güevéjar
+18096;Huélago
+18097;Huéneja
+18098;Huéscar
+18099;Huétor de Santillán
+18100;Huétor Tájar
+18101;Huétor Vega
+18102;Íllora
+18103;Ítrabo
+18105;Iznalloz
+18106;Játar
+18107;Jayena
+18108;Jérez del Marquesado
+18109;Jete
+18111;Jun
+18112;Juviles
+18115;Láchar
+18116;Lanjarón
+18117;Lanteira
+18119;Lecrín
+18120;Lentegí
+18121;Lobras
+18122;Loja
+18123;Lugros
+18124;Lújar
+18126;Malahá, La
+18127;Maracena
+18128;Marchal
+18132;Moclín
+18133;Molvízar
+18134;Monachil
+18135;Montefrío
+18136;Montejícar
+18137;Montillana
+18138;Moraleda de Zafayona
+18909;Morelábor
+18140;Motril
+18141;Murtas
+18903;Nevada
+18143;Nigüelas
+18144;Nívar
+18145;Ogíjares
+18146;Orce
+18147;Órgiva
+18148;Otívar
+18150;Padul
+18151;Pampaneira
+18152;Pedro Martínez
+18153;Peligros
+18154;Peza, La
+18910;Pinar, El
+18157;Pinos Genil
+18158;Pinos Puente
+18159;Píñar
+18161;Polícar
+18162;Polopos
+18163;Pórtugos
+18164;Puebla de Don Fadrique
+18165;Pulianas
+18167;Purullena
+18168;Quéntar
+18170;Rubite
+18171;Salar
+18173;Salobreña
+18174;Santa Cruz del Comercio
+18175;Santa Fe
+18176;Soportújar
+18177;Sorvilán
+18901;Taha, La
+18178;Torre-Cardela
+18916;Torrenueva Costa
+18179;Torvizcón
+18180;Trevélez
+18181;Turón
+18182;Ugíjar
+18914;Valderrubio
+18907;Valle del Zalabí
+18902;Valle, El
+18183;Válor
+18911;Vegas del Genil
+18184;Vélez de Benaudalla
+18185;Ventas de Huelma
+18149;Villa de Otura
+18908;Villamena
+18187;Villanueva de las Torres
+18188;Villanueva Mesía
+18189;Víznar
+18192;Zafarraya
+18913;Zagra
+18193;Zubia, La
+18194;Zújar
+21001;Alájar
+21002;Aljaraque
+21003;Almendro, El
+21004;Almonaster la Real
+21005;Almonte
+21006;Alosno
+21007;Aracena
+21008;Aroche
+21009;Arroyomolinos de León
+21010;Ayamonte
+21011;Beas
+21012;Berrocal
+21013;Bollullos Par del Condado
+21014;Bonares
+21015;Cabezas Rubias
+21016;Cala
+21017;Calañas
+21018;Campillo, El
+21019;Campofrío
+21020;Cañaveral de León
+21021;Cartaya
+21022;Castaño del Robledo
+21023;Cerro de Andévalo, El
+21030;Chucena
+21024;Corteconcepción
+21025;Cortegana
+21026;Cortelazor
+21027;Cumbres de Enmedio
+21028;Cumbres de San Bartolomé
+21029;Cumbres Mayores
+21031;Encinasola
+21032;Escacena del Campo
+21033;Fuenteheridos
+21034;Galaroza
+21035;Gibraleón
+21036;Granada de Río-Tinto, La
+21037;Granado, El
+21038;Higuera de la Sierra
+21039;Hinojales
+21040;Hinojos
+21041;Huelva
+21042;Isla Cristina
+21043;Jabugo
+21044;Lepe
+21045;Linares de la Sierra
+21046;Lucena del Puerto
+21047;Manzanilla
+21048;Marines, Los
+21049;Minas de Riotinto
+21050;Moguer
+21051;Nava, La
+21052;Nerva
+21053;Niebla
+21054;Palma del Condado, La
+21055;Palos de la Frontera
+21056;Paterna del Campo
+21057;Paymogo
+21058;Puebla de Guzmán
+21059;Puerto Moral
+21060;Punta Umbría
+21061;Rociana del Condado
+21062;Rosal de la Frontera
+21063;San Bartolomé de la Torre
+21064;San Juan del Puerto
+21066;San Silvestre de Guzmán
+21065;Sanlúcar de Guadiana
+21067;Santa Ana la Real
+21068;Santa Bárbara de Casa
+21069;Santa Olalla del Cala
+21070;Trigueros
+21071;Valdelarco
+21072;Valverde del Camino
+21073;Villablanca
+21074;Villalba del Alcor
+21075;Villanueva de las Cruces
+21076;Villanueva de los Castillejos
+21077;Villarrasa
+21078;Zalamea la Real
+21902;Zarza-Perrunal, La
+21079;Zufre
+23001;Albanchez de Mágina
+23002;Alcalá la Real
+23003;Alcaudete
+23004;Aldeaquemada
+23005;Andújar
+23006;Arjona
+23007;Arjonilla
+23008;Arquillos
+23905;Arroyo del Ojanco
+23009;Baeza
+23010;Bailén
+23011;Baños de la Encina
+23012;Beas de Segura
+23902;Bedmar y Garcíez
+23014;Begíjar
+23015;Bélmez de la Moraleda
+23016;Benatae
+23017;Cabra del Santo Cristo
+23018;Cambil
+23019;Campillo de Arenas
+23020;Canena
+23021;Carboneros
+23901;Cárcheles
+23024;Carolina, La
+23025;Castellar
+23026;Castillo de Locubín
+23027;Cazalilla
+23028;Cazorla
+23029;Chiclana de Segura
+23030;Chilluévar
+23031;Escañuela
+23032;Espeluy
+23033;Frailes
+23034;Fuensanta de Martos
+23035;Fuerte del Rey
+23037;Génave
+23038;Guardia de Jaén, La
+23039;Guarromán
+23041;Higuera de Calatrava
+23042;Hinojares
+23043;Hornos
+23044;Huelma
+23045;Huesa
+23046;Ibros
+23047;Iruela, La
+23048;Iznatoraf
+23049;Jabalquinto
+23050;Jaén
+23051;Jamilena
+23052;Jimena
+23053;Jódar
+23040;Lahiguera
+23054;Larva
+23055;Linares
+23056;Lopera
+23057;Lupión
+23058;Mancha Real
+23059;Marmolejo
+23060;Martos
+23061;Mengíbar
+23062;Montizón
+23063;Navas de San Juan
+23064;Noalejo
+23065;Orcera
+23066;Peal de Becerro
+23067;Pegalajar
+23069;Porcuna
+23070;Pozo Alcón
+23071;Puente de Génave
+23072;Puerta de Segura, La
+23073;Quesada
+23074;Rus
+23075;Sabiote
+23076;Santa Elena
+23077;Santiago de Calatrava
+23904;Santiago-Pontones
+23079;Santisteban del Puerto
+23080;Santo Tomé
+23081;Segura de la Sierra
+23082;Siles
+23084;Sorihuela del Guadalimar
+23085;Torreblascopedro
+23086;Torredelcampo
+23087;Torredonjimeno
+23088;Torreperogil
+23090;Torres
+23091;Torres de Albánchez
+23092;Úbeda
+23093;Valdepeñas de Jaén
+23094;Vilches
+23095;Villacarrillo
+23096;Villanueva de la Reina
+23097;Villanueva del Arzobispo
+23098;Villardompardo
+23099;Villares, Los
+23101;Villarrodrigo
+23903;Villatorres
+29001;Alameda
+29002;Alcaucín
+29003;Alfarnate
+29004;Alfarnatejo
+29005;Algarrobo
+29006;Algatocín
+29007;Alhaurín de la Torre
+29008;Alhaurín el Grande
+29009;Almáchar
+29010;Almargen
+29011;Almogía
+29012;Álora
+29013;Alozaina
+29014;Alpandeire
+29015;Antequera
+29016;Árchez
+29017;Archidona
+29018;Ardales
+29019;Arenas
+29020;Arriate
+29021;Atajate
+29022;Benadalid
+29023;Benahavís
+29024;Benalauría
+29025;Benalmádena
+29026;Benamargosa
+29027;Benamocarra
+29028;Benaoján
+29029;Benarrabá
+29030;Borge, El
+29031;Burgo, El
+29032;Campillos
+29033;Canillas de Aceituno
+29034;Canillas de Albaida
+29035;Cañete la Real
+29036;Carratraca
+29037;Cartajima
+29038;Cártama
+29039;Casabermeja
+29040;Casarabonela
+29041;Casares
+29042;Coín
+29043;Colmenar
+29044;Comares
+29045;Cómpeta
+29046;Cortes de la Frontera
+29047;Cuevas Bajas
+29049;Cuevas de San Marcos
+29048;Cuevas del Becerro
+29050;Cútar
+29051;Estepona
+29052;Faraján
+29053;Frigiliana
+29054;Fuengirola
+29055;Fuente de Piedra
+29056;Gaucín
+29057;Genalguacil
+29058;Guaro
+29059;Humilladero
+29060;Igualeja
+29061;Istán
+29062;Iznate
+29063;Jimera de Líbar
+29064;Jubrique
+29065;Júzcar
+29066;Macharaviaya
+29067;Málaga
+29068;Manilva
+29069;Marbella
+29070;Mijas
+29071;Moclinejo
+29072;Mollina
+29073;Monda
+29903;Montecorto
+29074;Montejaque
+29075;Nerja
+29076;Ojén
+29077;Parauta
+29079;Periana
+29080;Pizarra
+29081;Pujerra
+29082;Rincón de la Victoria
+29083;Riogordo
+29084;Ronda
+29085;Salares
+29086;Sayalonga
+29087;Sedella
+29904;Serrato
+29088;Sierra de Yeguas
+29089;Teba
+29090;Tolox
+29901;Torremolinos
+29091;Torrox
+29092;Totalán
+29093;Valle de Abdalajís
+29094;Vélez-Málaga
+29095;Villanueva de Algaidas
+29902;Villanueva de la Concepción
+29098;Villanueva de Tapia
+29096;Villanueva del Rosario
+29097;Villanueva del Trabuco
+29099;Viñuela
+29100;Yunquera
+41001;Aguadulce
+41002;Alanís
+41003;Albaida del Aljarafe
+41004;Alcalá de Guadaíra
+41005;Alcalá del Río
+41006;Alcolea del Río
+41007;Algaba, La
+41008;Algámitas
+41009;Almadén de la Plata
+41010;Almensilla
+41011;Arahal
+41012;Aznalcázar
+41013;Aznalcóllar
+41014;Badolatosa
+41015;Benacazón
+41016;Bollullos de la Mitación
+41017;Bormujos
+41018;Brenes
+41019;Burguillos
+41020;Cabezas de San Juan, Las
+41021;Camas
+41022;Campana, La
+41023;Cantillana
+41901;Cañada Rosal
+41024;Carmona
+41025;Carrión de los Céspedes
+41026;Casariche
+41027;Castilblanco de los Arroyos
+41028;Castilleja de Guzmán
+41029;Castilleja de la Cuesta
+41030;Castilleja del Campo
+41031;Castillo de las Guardas, El
+41032;Cazalla de la Sierra
+41033;Constantina
+41034;Coria del Río
+41035;Coripe
+41036;Coronil, El
+41037;Corrales, Los
+41903;Cuervo de Sevilla, El
+41038;Dos Hermanas
+41039;Écija
+41040;Espartinas
+41041;Estepa
+41042;Fuentes de Andalucía
+41043;Garrobo, El
+41044;Gelves
+41045;Gerena
+41046;Gilena
+41047;Gines
+41048;Guadalcanal
+41049;Guillena
+41050;Herrera
+41051;Huévar del Aljarafe
+41902;Isla Mayor
+41052;Lantejuela
+41053;Lebrija
+41054;Lora de Estepa
+41055;Lora del Río
+41056;Luisiana, La
+41057;Madroño, El
+41058;Mairena del Alcor
+41059;Mairena del Aljarafe
+41060;Marchena
+41061;Marinaleda
+41062;Martín de la Jara
+41063;Molares, Los
+41064;Montellano
+41065;Morón de la Frontera
+41066;Navas de la Concepción, Las
+41067;Olivares
+41068;Osuna
+41069;Palacios y Villafranca, Los
+41904;Palmar de Troya, El
+41070;Palomares del Río
+41071;Paradas
+41072;Pedrera
+41073;Pedroso, El
+41074;Peñaflor
+41075;Pilas
+41076;Pruna
+41077;Puebla de Cazalla, La
+41078;Puebla de los Infantes, La
+41079;Puebla del Río, La
+41080;Real de la Jara, El
+41081;Rinconada, La
+41082;Roda de Andalucía, La
+41083;Ronquillo, El
+41084;Rubio, El
+41085;Salteras
+41086;San Juan de Aznalfarache
+41088;San Nicolás del Puerto
+41087;Sanlúcar la Mayor
+41089;Santiponce
+41090;Saucejo, El
+41091;Sevilla
+41092;Tocina
+41093;Tomares
+41094;Umbrete
+41095;Utrera
+41096;Valencina de la Concepción
+41097;Villamanrique de la Condesa
+41100;Villanueva de San Juan
+41098;Villanueva del Ariscal
+41099;Villanueva del Río y Minas
+41101;Villaverde del Río
+41102;Viso del Alcor, El

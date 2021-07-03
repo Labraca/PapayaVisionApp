@@ -14,5 +14,11 @@ public interface MunicipioDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertAll(List<Municipio> municipioList);
     @Query("SELECT * FROM MUNICIPIO")
-    public LiveData<Municipio> getAll();
+    public List<Municipio> getAll();
+
+    @Query("SELECT CodMun FROM MUNICIPIO WHERE Municipio = :muni")
+    public LiveData<Municipio> getMunicipioByName(String muni);
+
+    @Query("SELECT Municipio FROM MUNICIPIO")
+    public LiveData<List<String>> getAllNombresMuni();
 }

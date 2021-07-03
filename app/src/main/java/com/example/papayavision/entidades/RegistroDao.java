@@ -30,6 +30,8 @@ public interface RegistroDao {
     public LiveData<List<Registro>> getAllRegistrosLive();
     @Query("SELECT * FROM REGISTRO ORDER BY IDREGISTRO DESC LIMIT 1")
     public LiveData<Registro> getLastRegistro();
+    @Query("SELECT * FROM REGISTRO ORDER BY IDREGISTRO DESC LIMIT 1")
+    public Registro getLastRegistroNow();
     @Query("DELETE FROM REGISTRO")
     public void deleteAll();
     @Query("SELECT * FROM REGISTRO WHERE idRegistro = :idReg")

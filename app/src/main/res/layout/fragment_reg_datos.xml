@@ -39,19 +39,31 @@
 
                 <EditText
                     android:id="@+id/volActual"
-                    android:layout_width="match_parent"
+                    android:layout_width="103dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:inputType="numberDecimal"
                     android:labelFor="@id/volActualLabel"
+                    android:singleLine="true"
                     android:text="@string/volActual"
                     android:textAlignment="center"
                     android:textSize="40sp"
-                    android:singleLine="true"
-                    android:inputType="numberDecimal"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="-" />
+
+                <TextView
+                    android:id="@+id/kgLabelActual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg"
+                    android:textAlignment="center"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/volActual"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -90,12 +102,12 @@
                     android:text="Volumen estimado:"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/estimacion"
+                    app:layout_constraintBottom_toTopOf="@+id/volEstimacion"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/estimacion"
-                    android:layout_width="match_parent"
+                    android:id="@+id/volEstimacion"
+                    android:layout_width="103dp"
                     android:layout_height="wrap_content"
                     android:labelFor="@id/volEstimadoLabel"
                     android:text="@string/estimacion"
@@ -103,10 +115,22 @@
                     android:textColor="#534F4F"
                     android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/kgLabelActual2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="kg"
+                    android:textAlignment="center"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/volEstimacion"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="0kg" />
+                    app:layout_constraintVertical_bias="0.503" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </RelativeLayout>

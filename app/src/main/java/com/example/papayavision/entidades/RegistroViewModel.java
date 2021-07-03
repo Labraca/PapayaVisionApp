@@ -39,7 +39,9 @@ public class RegistroViewModel extends AndroidViewModel {
     public void selectItem(Registro reg) {
         selectedItem.setValue(reg);
     }
-
+    public int getNumOfFotosInRegistro(Registro reg){
+        return repository.getAllFotosFromReg(reg).size();
+    }
     public LiveData<Registro> getSelectedItem() {
         return selectedItem;
     }
