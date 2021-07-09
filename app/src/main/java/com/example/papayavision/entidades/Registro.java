@@ -44,7 +44,7 @@ public class Registro {
     private float perMuyMaduras = 0;
 
     @ColumnInfo(name = "temp")
-    private float temp = -1;
+    private float temp = -274;
 
     public int getVolumen() {
         return volumen;
@@ -126,7 +126,7 @@ public class Registro {
         this.inicioFecha = inicioFecha;
     }
 
-    public Registro(){};
+    public Registro(){}
 
 
 

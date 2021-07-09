@@ -3,6 +3,7 @@ package com.example.papayavision.DBUtilities;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -27,23 +28,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Registro.class, Municipio.class, Foto.class}, version = 1)
 @TypeConverters({DateConverters.class})
 public abstract class AppDatabase extends RoomDatabase {
+    public static WeatherAPIAdapter wAPIAdapter;
+    private static AssetManager am;
     //DAO para los registros
     public abstract RegistroDao registroDao();
     public abstract MunicipioDAO municipioDAO();
     public abstract FotosDao fotosDao();
-    public static WeatherAPIAdapter wAPIAdapter;
-    //Instancia unica para la BBDD
-    private static volatile AppDatabase INSTANCIA;
-    private static AssetManager am;
-    //Servicio multihilo para crear hilos segun demanda
+
+
+    private static volatile AppDatabase INSTANCIA; //Instancia unica para la BBDD
+
     static final ExecutorService databaseWriteExecutor =
-            Executors.newCachedThreadPool();
+            Executors.newCachedThreadPool(); //Servicio multihilo para crear hilos segun demanda
 
     // Acceso a la Instancia
     public static AppDatabase getDatabase(final Context context) {

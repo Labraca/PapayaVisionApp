@@ -90,9 +90,9 @@ public class OpenCVModule {
 
         //Hacemos una mascara solo de la mitad de los acoplados en el rango de las Inmaduras y las Maduras
         Mat acopInm = new Mat();
-        Core.inRange(hsv_img,new Scalar(meanIyE,74,74),green,entreIyE);
+        Core.inRange(hsv_img,new Scalar(meanIyE,74,74),green,acopInm);
         Mat acopMad = new Mat();
-        Core.inRange(hsv_img,yellow,new Scalar(meanEyM,204,204),entreEyM);
+        Core.inRange(hsv_img,yellow,new Scalar(meanEyM,204,204),acopMad);
 
         //Calculo de los pixeles de cada zona
         float pxAcEntreIyE = Core.countNonZero(entreIyE);

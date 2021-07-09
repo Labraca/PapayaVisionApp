@@ -59,6 +59,7 @@ public class RegDetalles extends AppCompatActivity {
 
         regRepo = new RegRepository(getApplication());
         int idReg = getIntent().getIntExtra("idReg", Integer.MIN_VALUE);
+        boolean ifcamera = getIntent().getIntExtra("camera",0) != 0;
 
         LiveData<Registro> reg = regRepo.getRegById(idReg);
 
@@ -71,6 +72,12 @@ public class RegDetalles extends AppCompatActivity {
 
                 if (savedInstanceState == null && !inflatedOnce) {
                     setInflatedOnce(true);
+                    if (ifcamera){
+                        getSupportFragmentManager().beginTransaction()
+                                .setReorderingAllowed(true)
+                                .add(R.id.fragmentContainerView, CameraFragment.class, null)
+                                .commit();
+                    }else
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
                             .add(R.id.fragmentContainerView, RegDatosFragment.class, null)

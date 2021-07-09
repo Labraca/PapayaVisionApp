@@ -21,9 +21,11 @@ public class MultipleLinearRegression {
     private double[] pesos = new double[6];
     private double bias = 0.0;
     private static MultipleLinearRegression INSTANCIA;
+
     private MultipleLinearRegression(Context context){
         leerPesosPref(context);
     }
+
     public static MultipleLinearRegression getINSTANCIA(Context context){
         if (INSTANCIA == null) {
             synchronized (MultipleLinearRegression.class) {
@@ -34,6 +36,7 @@ public class MultipleLinearRegression {
         }
         return INSTANCIA;
     }
+
     //forwardPropogate
     public int calcularVolumenEstimado(double[] datos){
         double[] x = this.pesos;
@@ -46,37 +49,38 @@ public class MultipleLinearRegression {
         return (int)(sum + this.bias);
     }
 
-    private ArrayList<Double> calculateGradients(double[] inputs, double predY,double targetY){
-        double dJ_dPred = meanSquaredErrorDerivative(predY, targetY);
-        double[] dPred_dW = inputs;
-        double[] dJ_dW = multiplyScalar(dPred_dW,dJ_dPred);
+    private Pair<Double[],Double> calculateGradients(double[] inputs, double predY,double targetY){
+
+        double dJ_dPred = meanSquaredErrorDerivative(predY, targetY); //MSE'
+        double[] dPred_dW = inputs; //X1...X6
+        double[] dJ_dW = multiplyScalar(dPred_dW,dJ_dPred); //MSE'· X
         double dJ_dB = dJ_dPred;
-        ArrayList<Double> result = new ArrayList<>();
-        for (double i:dPred_dW){
+        Double[] result = new Double[6];
+        int j = 0;
+        for (double i:dJ_dW){
             Double x = new Double(i);
-            result.add(x);
+            result[j++] = x;
         }
 
         Double x = new Double(dJ_dB);
-        result.add(x);
+        Pair<Double[],Double> weightBias = new Pair<>(result,x);
 
-        return result;
+        return weightBias;
      }
-    public void optimizeParameters(ArrayList<Double[]> gradients, double learningRate){
-        ArrayList<double[]> weightGradientsList = new ArrayList<double[]>();
-
-        for(Double[] gradient:gradients){
-            double[] x = {gradient[0]};
-            weightGradientsList.add(x);
-        }
-        ArrayList<Double> weightGradients = multidimMean(weightGradientsList);
-
+    public void optimizeParameters(ArrayList<Pair<Double[],Double>> gradients, double learningRate){
+        ArrayList<Double[]> weightGradientsList = new ArrayList<>();
         ArrayList<Double> biasGradientsList = new ArrayList<>();
-        for(Double[] gradient:gradients){
-            double x = gradient[1];
-            biasGradientsList.add(x);
+
+        for(Pair<Double[],Double> i : gradients){
+            Double[] x = i.first;
+            weightGradientsList.add(x);
+            Double b = i.second;
+            biasGradientsList.add(b);
         }
+
+        ArrayList<Double> weightGradients = multidimMean(weightGradientsList);
         double biasGradients = calculateAverage(biasGradientsList);
+
         this.pesos = substract(this.pesos,multiplyScalar(weightGradients,learningRate));
         this.bias = this.bias - (biasGradients*learningRate);
 
@@ -86,18 +90,19 @@ public class MultipleLinearRegression {
         List<List<Pair<double[],Double>>> batches = batch(x,y,batchSize);
         for (int i = 0;i < epoch;i++){
             for (List<Pair<double[],Double>> batch: batches){
-                ArrayList<Double[]> gradients = new ArrayList<>();
+                ArrayList<Pair<Double[],Double>> gradients = new ArrayList<>();
                 for(Pair<double[],Double> pair:batch){
                     int prediction = calcularVolumenEstimado(pair.first);
-                    ArrayList<Double> gradientes = calculateGradients(pair.first,prediction,pair.second);
-                    Double[] data=new Double[gradientes.size()];
-                    data = gradientes.toArray(data);
-                    gradients.add(data);
+                    Pair<Double[],Double> gradientes = calculateGradients(pair.first,prediction,pair.second);
+                    //Double[] data=new Double[gradientes.size()];
+                    //data = gradientes.toArray(data);
+                    gradients.add(gradientes);
                 }
                 optimizeParameters(gradients,0.01);
             }
         }
         QueryPreferencias.guardarPesos(context,this.pesos,this.bias);
+        leerPesosPref(context);
     }
 
 
@@ -130,11 +135,11 @@ public class MultipleLinearRegression {
         }
         return sum;
     }
-    private ArrayList<Double> multidimMean(ArrayList<double[]> x){
+    private ArrayList<Double> multidimMean(ArrayList<Double[]> x){
         ArrayList<Double> mean = new ArrayList<Double>();
         for(int i = 0 ; i < x.get(0).length;i++){
             double suma = 0.0;
-            for(double[] array:x){
+            for(Double[] array:x){
                 suma += array[i];
             }
             mean.add(suma);
@@ -159,7 +164,7 @@ public class MultipleLinearRegression {
     }
     public void leerPesosPref(Context context){
         double[] datos = parseString2Double(QueryPreferencias.cargarPesos(context));
-        for(int i = 0 ; i < this.pesos.length; i++){
+        for(int i = 0 ; i < this.pesos.length-1; i++){
             pesos[i] = datos[i];
         }
         this.bias = datos[datos.length-1];

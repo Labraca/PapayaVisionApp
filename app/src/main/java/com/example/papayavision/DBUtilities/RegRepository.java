@@ -61,12 +61,12 @@ public class RegRepository {
         regDao.getRegById(idReg).observe(owner, new Observer<Registro>() {
             @Override
             public void onChanged(Registro registro) {
-                getFotos(registro,owner,foto);
+                insertFoto(registro,owner,foto);
             }
         });
     }
 
-    private void getFotos(Registro reg,LifecycleOwner owner,Foto foto) {
+    private void insertFoto(Registro reg,LifecycleOwner owner,Foto foto) {
 
         try {
             regDao.getFotosOfReg(reg.getIdRegistro()).observe(owner, new Observer<List<Foto>>() {
@@ -140,10 +140,8 @@ public class RegRepository {
         getLast().observe(owner, new Observer<Registro>() {
             @Override
             public void onChanged(Registro registro) {
-                float[] medias = weatherAPIAdapter.getMedias(codMun);
-                registro.setHrel(medias[1]);
-                registro.setTemp(medias[0]);
-                update(registro);
+                if(registro.getHrel() < 0)
+                weatherAPIAdapter.updateMediasRegistro(codMun,registro);
             }
         });
     }

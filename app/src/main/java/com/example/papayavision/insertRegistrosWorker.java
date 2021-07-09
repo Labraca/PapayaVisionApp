@@ -41,35 +41,37 @@ public class insertRegistrosWorker extends Worker {
         return insertNuevosReg();
     }
 
-
+    //Método para insertar nuevo registros
     private Result insertNuevosReg() {
-        Log.w("WORKER","Insertando nuevos registros...");
+        Log.w("WORKER", "Insertando nuevos registros...");
         Calendar cal = Calendar.getInstance();
         cal.setFirstDayOfWeek(cal.MONDAY);
+        int diffDays = cal.getFirstDayOfWeek() - cal.get(Calendar.DAY_OF_WEEK);
+        cal.add(Calendar.DAY_OF_WEEK, diffDays);
 
         String[] ubicacion = QueryPreferencias.cargarUbicacion(getApplicationContext());
         Registro reg = new Registro(0, cal.getTime());
-        if(!ubicacion[1].equals("-1")){
-            float[] medias = db.wAPIAdapter.getMedias(ubicacion[1]);
-            reg.setTemp(medias[0]);
-            reg.setHrel(medias[1]);
-        }
+
 
         Registro last;
         try {
-            last  = db.registroDao().getLastRegistroNow();
-        }catch (Exception e){
+            last = db.registroDao().getLastRegistroNow();
+        } catch (Exception e) {
             db.registroDao().insertRegistros(reg);
-            Log.w("WORKER","No se ha podido extraer el ultimo registro se intentará mas tarde");
+            Log.w("WORKER", "No se ha podido extraer el ultimo registro se intentará mas tarde");
             return Result.retry();
         }
-        if (weeksUntilLastConnection(last) < 1){
-            Log.w("WORKER","No ha pasado mas de una semana desde el ultimo registro");
-           return Result.success();
-        }
 
-        if(last.getVolumen() == -1 || last.getTemp() == -1){
-            Log.w("WORKER","Campos negativos");
+        if (weeksUntilLastConnection(last) < 1) {
+            Log.w("WORKER", "No ha pasado mas de una semana desde el ultimo registro");
+            return Result.success();
+        }
+        if (last.getHrel() < 0 && !ubicacion[1].equals("-1"))
+            db.wAPIAdapter.updateMediasRegistro(ubicacion[1], last);
+
+
+        if(last.getVolumen() == -1){
+            Log.w("WORKER","Volumen negativos");
             return Result.retry();
         }else{
             double[] features = new double[6];
@@ -87,7 +89,7 @@ public class insertRegistrosWorker extends Worker {
 
             MultipleLinearRegression mlr = MultipleLinearRegression.getINSTANCIA(getApplicationContext());
             //Entreno el modelo linear de regresion
-            mlr.fit(datos,result,1,5,getApplicationContext());
+            mlr.fit(datos,result,1,6,getApplicationContext());
 
             //calculo la nueva estimacion para esta semana (usando los porcentajes de la ultima semana)
             double[] datosActuales = new double[6];
@@ -105,9 +107,14 @@ public class insertRegistrosWorker extends Worker {
 
         }
         db.registroDao().insertRegistros(reg);
+        if(!ubicacion[1].equals("-1")){
+            db.wAPIAdapter.updateMediasRegistro(ubicacion[1],reg);
+        }
         Log.i("WORKER","Registro añadido");
         return Result.success();
     }
+
+    //Calcular cuantas semanas hace desde el ultimo registro
     private int weeksUntilLastConnection(Registro last){
         Date currentDate = new Date();
         Calendar cal = Calendar.getInstance();

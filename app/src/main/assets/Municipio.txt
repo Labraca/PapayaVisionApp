@@ -36,7 +36,7 @@
 04034;Cóbdar
 04035;Cuevas del Almanzora
 04038;Dalías
-04902;Ejido, El
+04902;El Ejido
 04041;Enix
 04043;Felix
 04044;Fines
@@ -108,27 +108,27 @@
 11005;Algodonales
 11006;Arcos de la Frontera
 11007;Barbate
-11008;Barrios, Los
+11008;Los Barrios
 11901;Benalup-Casas Viejas
 11009;Benaocaz
 11010;Bornos
-11011;Bosque, El
+11011;El Bosque
 11012;Cádiz
 11013;Castellar de la Frontera
 11015;Chiclana de la Frontera
 11016;Chipiona
 11014;Conil de la Frontera
 11017;Espera
-11018;Gastor, El
+11018;El Gastor
 11019;Grazalema
 11020;Jerez de la Frontera
 11021;Jimena de la Frontera
-11022;Línea de la Concepción, La
+11022;La Línea de la Concepción
 11023;Medina Sidonia
 11024;Olvera
 11025;Paterna de Rivera
 11026;Prado del Rey
-11027;Puerto de Santa María, El
+11027;El Puerto de Santa María
 11028;Puerto Real
 11029;Puerto Serrano
 11030;Rota
@@ -156,14 +156,14 @@
 14008;Belalcázar
 14009;Belmez
 14010;Benamejí
-14011;Blázquez, Los
+14011;Los Blázquez
 14012;Bujalance
 14013;Cabra
 14014;Cañete de las Torres
 14015;Carcabuey
 14016;Cardeña
-14017;Carlota, La
-14018;Carpio, El
+14017;La Carlota
+14018;El Carpio
 14019;Castro del Río
 14020;Conquista
 14021;Córdoba
@@ -178,10 +178,10 @@
 14029;Fuente Obejuna
 14030;Fuente Palmera
 14031;Fuente-Tójar
-14032;Granjuela, La
+14032;La Granjuela
 14033;Guadalcázar
-14902;Guijarrosa, La
-14034;Guijo, El
+14902;La Guijarrosa
+14034;El Guijo
 14035;Hinojosa del Duque
 14036;Hornachuelos
 14037;Iznájar
@@ -204,7 +204,7 @@
 14054;Pozoblanco
 14055;Priego de Córdoba
 14056;Puente Genil
-14057;Rambla, La
+14057;La Rambla
 14058;Rute
 14059;San Sebastián de los Ballesteros
 14061;Santa Eufemia
@@ -212,7 +212,7 @@
 14062;Torrecampo
 14063;Valenzuela
 14064;Valsequillo
-14065;Victoria, La
+14065;La Victoria
 14066;Villa del Río
 14067;Villafranca de Córdoba
 14068;Villaharta
@@ -221,7 +221,7 @@
 14071;Villanueva del Rey
 14072;Villaralto
 14073;Villaviciosa de Córdoba
-14074;Viso, El
+14074;El Viso
 14075;Zuheros
 18001;Agrón
 18002;Alamedilla
@@ -355,8 +355,8 @@
 18151;Pampaneira
 18152;Pedro Martínez
 18153;Peligros
-18154;Peza, La
-18910;Pinar, El
+18154;La Peza
+18910;El Pinar
 18157;Pinos Genil
 18158;Pinos Puente
 18159;Píñar
@@ -374,7 +374,7 @@
 18175;Santa Fe
 18176;Soportújar
 18177;Sorvilán
-18901;Taha, La
+18901;La Taha
 18178;Torre-Cardela
 18916;Torrenueva Costa
 18179;Torvizcón
@@ -383,7 +383,7 @@
 18182;Ugíjar
 18914;Valderrubio
 18907;Valle del Zalabí
-18902;Valle, El
+18902;El Valle
 18183;Válor
 18911;Vegas del Genil
 18184;Vélez de Benaudalla
@@ -399,7 +399,7 @@
 18194;Zújar
 21001;Alájar
 21002;Aljaraque
-21003;Almendro, El
+21003; El Almendro
 21004;Almonaster la Real
 21005;Almonte
 21006;Alosno
@@ -414,12 +414,12 @@
 21015;Cabezas Rubias
 21016;Cala
 21017;Calañas
-21018;Campillo, El
+21018; El Campillo
 21019;Campofrío
 21020;Cañaveral de León
 21021;Cartaya
 21022;Castaño del Robledo
-21023;Cerro de Andévalo, El
+21023;El Cerro de Andévalo
 21030;Chucena
 21024;Corteconcepción
 21025;Cortegana
@@ -432,8 +432,8 @@
 21033;Fuenteheridos
 21034;Galaroza
 21035;Gibraleón
-21036;Granada de Río-Tinto, La
-21037;Granado, El
+21036;La Granada de Río-Tinto
+21037;El Granado
 21038;Higuera de la Sierra
 21039;Hinojales
 21040;Hinojos
@@ -444,13 +444,13 @@
 21045;Linares de la Sierra
 21046;Lucena del Puerto
 21047;Manzanilla
-21048;Marines, Los
+21048;Los Marines
 21049;Minas de Riotinto
 21050;Moguer
-21051;Nava, La
+21051;La Nava
 21052;Nerva
 21053;Niebla
-21054;Palma del Condado, La
+21054;La Palma del Condado
 21055;Palos de la Frontera
 21056;Paterna del Campo
 21057;Paymogo
@@ -546,7 +546,7 @@
 23069;Porcuna
 23070;Pozo Alcón
 23071;Puente de Génave
-23072;Puerta de Segura, La
+23072;La Puerta de Segura
 23073;Quesada
 23074;Rus
 23075;Sabiote
@@ -603,8 +603,8 @@
 29027;Benamocarra
 29028;Benaoján
 29029;Benarrabá
-29030;Borge, El
-29031;Burgo, El
+29030;El Borge
+29031;El Burgo
 29032;Campillos
 29033;Canillas de Aceituno
 29034;Canillas de Albaida
@@ -708,20 +708,20 @@
 41028;Castilleja de Guzmán
 41029;Castilleja de la Cuesta
 41030;Castilleja del Campo
-41031;Castillo de las Guardas, El
+41031;El Castillo de las Guardas
 41032;Cazalla de la Sierra
 41033;Constantina
 41034;Coria del Río
 41035;Coripe
-41036;Coronil, El
+41036;El Coronil
 41037;Corrales, Los
-41903;Cuervo de Sevilla, El
+41903;El Cuervo de Sevilla
 41038;Dos Hermanas
 41039;Écija
 41040;Espartinas
 41041;Estepa
 41042;Fuentes de Andalucía
-41043;Garrobo, El
+41043;El Garrobo
 41044;Gelves
 41045;Gerena
 41046;Gilena
@@ -735,8 +735,8 @@
 41053;Lebrija
 41054;Lora de Estepa
 41055;Lora del Río
-41056;Luisiana, La
-41057;Madroño, El
+41056;La Luisiana
+41057;El Madroño
 41058;Mairena del Alcor
 41059;Mairena del Aljarafe
 41060;Marchena
@@ -749,22 +749,22 @@
 41067;Olivares
 41068;Osuna
 41069;Palacios y Villafranca, Los
-41904;Palmar de Troya, El
+41904;El Palmar de Troya
 41070;Palomares del Río
 41071;Paradas
 41072;Pedrera
-41073;Pedroso, El
+41073;ElPedroso
 41074;Peñaflor
 41075;Pilas
 41076;Pruna
 41077;Puebla de Cazalla, La
-41078;Puebla de los Infantes, La
+41078;La Puebla de los Infantes
 41079;Puebla del Río, La
-41080;Real de la Jara, El
+41080;El Real de la Jara
 41081;Rinconada, La
 41082;Roda de Andalucía, La
-41083;Ronquillo, El
-41084;Rubio, El
+41083;El Ronquillo
+41084;El Rubio,
 41085;Salteras
 41086;San Juan de Aznalfarache
 41088;San Nicolás del Puerto

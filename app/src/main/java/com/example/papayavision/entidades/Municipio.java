@@ -13,7 +13,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-@Entity()
+@Entity
 public class Municipio {
     @NotNull
     @ColumnInfo(name = "Municipio")

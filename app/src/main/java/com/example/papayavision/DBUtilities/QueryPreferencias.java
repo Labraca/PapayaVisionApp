@@ -13,7 +13,7 @@ public class QueryPreferencias {
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putString("Localidad", localidad);
-        editor.putString("CodPostal",CodPostal);
+        editor.putString("CodMun",CodPostal);
         editor.commit();
     }
 
@@ -26,7 +26,9 @@ public class QueryPreferencias {
     }
     public static boolean existeUbi(Context c){
         SharedPreferences preferences = c.getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        return (preferences.contains("Localidad") && preferences.contains("CodPostal")) || !cargarUbicacion(c)[1].equals("-1");
+        return preferences.contains("Localidad")
+                && preferences.contains("CodMun")
+                && !cargarUbicacion(c)[1].equals("-1");
     }
     public static String[] cargarPesos(Context c) {
         SharedPreferences preferences = c.getSharedPreferences("regression", Context.MODE_PRIVATE);
@@ -61,5 +63,27 @@ public class QueryPreferencias {
         SharedPreferences preferences = c.getSharedPreferences("estimacion", Context.MODE_PRIVATE);
 
         return  preferences.getString("estimacion","0");
+    }
+    public static void guardarAjustes(Context c,String tamañoFinca,String numeroArboles,String variedad,int numFotos) {
+        SharedPreferences preferences = c.getSharedPreferences("ajustes", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("tamañoFinca",""+tamañoFinca);
+        editor.putString("numeroArboles",""+numeroArboles);
+        editor.putString("numeroFotos",""+numFotos);
+        editor.putString("variedad",variedad);
+        editor.commit();
+    }
+    public static String[] cargarAjustes(Context c) {
+        SharedPreferences preferences = c.getSharedPreferences("estimacion", Context.MODE_PRIVATE);
+
+        String[] ajustes = new String[4];
+        ajustes[0] = preferences.getString("tamañoFinca",-1+"");
+        ajustes[1] = preferences.getString("numeroArboles",-1+"");
+        ajustes[2] = preferences.getString("variedad","");
+        ajustes[3] = preferences.getString("numeroFotos",-1+"");
+
+        return ajustes;
     }
 }

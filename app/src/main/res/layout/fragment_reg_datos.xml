@@ -293,7 +293,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="86dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/ubicontainer_drawable"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -303,14 +303,23 @@
 
         <TextView
             android:id="@+id/estFincaTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="197dp"
+            android:layout_height="34dp"
             android:text="Estado de la finca:"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintBottom_toTopOf="@+id/fotosContainer"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fotosRecom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fotosRecom"
+            app:layout_constraintBottom_toTopOf="@+id/divider3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/estFincaTitle"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -326,6 +335,7 @@
             android:id="@+id/fotosContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/divider2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -354,15 +364,74 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Porcentajes:"
-            app:layout_constraintBottom_toTopOf="@id/porcentajesContainer"
+            app:layout_constraintBottom_toTopOf="@id/porcentajesContainer1"
             tools:layout_editor_absoluteX="5dp" />
+
+        <LinearLayout
+            android:id="@+id/porcentajesContainer1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintBottom_toTopOf="@+id/porcentajesContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="% de verde" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="25-50% de amarillo" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+50% de amarillo" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/porcentajesContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"></LinearLayout>
+            android:weightSum="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/perInmaduras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/perEnviables"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/perMaduras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,19 +31,12 @@ import java.util.regex.Pattern;
 
 public class RegDatosFragment extends Fragment {
     private RegistroViewModel viewModel;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private EditText volReg;
     private LiveData<Registro> regHost;
     private TextView volEstimacion;
     private String estimacion;
     private ConstraintLayout fotosContainer;
+    private TextView fotosTotal;
     public RegDatosFragment() {
         // Required empty public constructor
     }
@@ -68,6 +61,10 @@ public class RegDatosFragment extends Fragment {
             viewModel = new ViewModelProvider(requireActivity()).get(RegistroViewModel.class);
         volReg = view.findViewById(R.id.volActual);
         volEstimacion = view.findViewById(R.id.volEstimacion);
+        fotosContainer= view.findViewById(R.id.fotosRecom);
+
+
+
         regHost = viewModel.getSelectedItem();
         regHost.observe(getViewLifecycleOwner(), new Observer<Registro>() {
             @Override
@@ -75,6 +72,16 @@ public class RegDatosFragment extends Fragment {
                 volReg.setText(registro.getVolumen()+"");
                 updateEstimacion(registro);
                 volEstimacion.setText(estimacion);
+
+                String[] ajustes = QueryPreferencias.cargarAjustes(getContext());
+
+                if(ajustes[4].isEmpty())
+                    fotosTotal
+                            .setText("Configure sus ajustes");
+                else
+                    fotosTotal
+                            .setText(viewModel.getNumOfFotosInRegistro(registro)
+                            +"/"+ajustes[4]);
             }
         });
 
@@ -129,9 +136,10 @@ public class RegDatosFragment extends Fragment {
                 transaction.commit();
             }
         });
-
         estimacion = QueryPreferencias.cargarEstimacion(getContext());
-        //volEstimado = findViewById(R.id.volEstimadoLabel);
+
+
+
         //tempActual = findViewById(R.id.tempActual);
         // tempPrxSem = findViewById(R.id.tempPrxSem);
         // hrelActual = findViewById(R.id.hrelActual);

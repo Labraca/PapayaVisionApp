@@ -27,21 +27,31 @@
             android:textStyle="bold"
             tools:text="Ubicacion:" />
 
-        <TextView
-            android:id="@+id/ubicacionState"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/ubicacionLabel"
-            android:paddingTop="5dp"
-            android:text="@string/ubicacionState"
-            tools:text="[No se pudo determinar su ubicacion]" />
+            android:layout_height="wrap_content">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/ubicacionState"
+                android:layout_width="262dp"
+                android:layout_height="24dp"
+                android:labelFor="@id/ubicacionLabel"
+                android:paddingTop="5dp"
+                android:text="@string/ubicacionState"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="[No se pudo determinar su ubicacion]" />
+
+            <ProgressBar
+                android:id="@+id/spinner"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="50dp"
+                android:layout_height="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ubicacionState"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <AutoCompleteTextView
             android:id="@+id/municipioCompleteView"
@@ -49,7 +59,7 @@
             android:layout_height="wrap_content"
             android:completionHint="Seleccione su localidad"
             android:completionThreshold="3"
-            android:hint="Selecicone su localidad" />
+            android:hint="Detecte o escriba aqui su municipio" />
 
         <Button
             android:id="@+id/saveLoc"
@@ -92,6 +102,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toRegSem" />
+
+    <Button
+        android:id="@+id/toWorker"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:backgroundTint="#2C2B2B"
+        android:onClick="launchActivity"
+        android:text="Iniciar Worker"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toRegSemAct" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRegSem"

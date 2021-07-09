@@ -1,30 +1,22 @@
 package com.example.papayavision.regUtilities;
 
-import com.android.volley.Request;
-import com.android.volley.toolbox.StringRequest;
-import com.example.papayavision.DBUtilities.WeatherAPIAdapter;
 import com.example.papayavision.entidades.Municipio;
-import com.example.papayavision.entidades.Registro;
-import com.github.cliftonlabs.json_simple.JsonException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.apache.commons.text.similarity.LevenshteinDistance;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
 //TODO
 public class WeatherApiUtils {
 
     public static Municipio getMunicipioByName(List<Municipio> m, String s){
+
         LevenshteinDistance levenshteinDistance = new LevenshteinDistance();
 
         Comparator<Municipio> comparator =
@@ -32,11 +24,12 @@ public class WeatherApiUtils {
                         p -> levenshteinDistance.apply(p.getMunicipio(), s));
 
         Municipio minMunicipio = Collections.min(m, comparator);
+
         return minMunicipio;
 
     }
     //TODO
-    public float[] getMedias(JsonObject datos){
+    public static float[] getMedias(JsonObject datos){
         JsonArray dias = new JsonArray();
 
         dias = (JsonArray) (((JsonObject)datos.get("prediccion")).get("dia"));

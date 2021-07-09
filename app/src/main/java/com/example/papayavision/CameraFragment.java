@@ -37,6 +37,7 @@ import com.example.papayavision.entidades.Registro;
 import com.example.papayavision.entidades.RegistroDao;
 import com.example.papayavision.entidades.RegistroViewModel;
 import com.example.papayavision.regUtilities.OpenCVModule;
+import com.example.papayavision.regUtilities.OpenCVModuleMT;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -72,7 +73,7 @@ public class CameraFragment extends Fragment {
     private RegRepository repoReg;
     private FloatingActionButton photoButton;
     private String currentPhotoPath;
-
+    private OpenCVModuleMT openCVModuleMT;
     public CameraFragment() {
         // Required empty public constructor
     }
@@ -104,6 +105,7 @@ public class CameraFragment extends Fragment {
         }
         cameraProviderFuture = ProcessCameraProvider.getInstance(getContext());
         repoReg = new RegRepository(getActivity().getApplication());
+        openCVModuleMT = OpenCVModuleMT.getOpenCVInstance(getContext());
     }
 
     @Override
@@ -173,13 +175,13 @@ public class CameraFragment extends Fragment {
                         //ya que 10 fotos semanales de media podria acabar llenando la memoria vamos a comprimir la imagen
                         resizeImage(finalFotoFile);
 
-                        Foto foto = OpenCVModule.calculatePercents(finalFotoFile);
+                        Foto foto = openCVModuleMT.calculatePercents(finalFotoFile);
                         foto.setPathImage(finalFotoFile.getAbsolutePath());
                         foto.setRegistroId(idReg);
 
                         repoReg.insertFoto(foto,getViewLifecycleOwner());
                         Log.i("Imagen Guardada","Se ha guardado una foto en "+finalFotoFile.getPath());
-
+                        Toast.makeText(getActivity().getApplicationContext(), "La imagen guardada",Toast.LENGTH_LONG).show();
 
                     }
                     @Override
@@ -187,7 +189,7 @@ public class CameraFragment extends Fragment {
                         // insert your code here.
                         Log.w("Imagen no salvada","La imagen no ha podido ser guardada");
                         error.printStackTrace();
-                        Toast.makeText(requireContext(),"La imagen no ha podido ser guardada",Toast.LENGTH_LONG);
+                        Toast.makeText(getActivity().getApplicationContext(),"La imagen no ha podido ser guardada",Toast.LENGTH_LONG).show();
                     }
                 }
         );
