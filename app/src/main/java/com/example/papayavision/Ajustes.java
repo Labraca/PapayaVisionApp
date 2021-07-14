@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.papayavision.DBUtilities.QueryPreferencias;
 import com.example.papayavision.DBUtilities.RegRepository;
@@ -15,7 +16,7 @@ import com.example.papayavision.DBUtilities.RegRepository;
 public class Ajustes extends AppCompatActivity {
     private EditText tamanoFinca,numeroArboles;
     private Button guardar;
-    private double Za2 = 3.842;
+
     private RegRepository repo;
     private AutoCompleteTextView variedad;
     private final String[] VARIEDADES = {"Intenzza","Gradted Intenzza","Sweet Sense","Vitale", "Caballero","Alicia"};
@@ -31,7 +32,7 @@ public class Ajustes extends AppCompatActivity {
 
         tamanoFinca = (EditText) findViewById(R.id.tamanoText);
         numeroArboles = (EditText) findViewById(R.id.numeroText);
-        variedad = (AutoCompleteTextView) findViewById(R.id.municipioCompleteView);
+        variedad = (AutoCompleteTextView) findViewById(R.id.variedadText);
         variedad.setThreshold(1);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(),
@@ -61,6 +62,7 @@ public class Ajustes extends AppCompatActivity {
                     numFotos = estimarNumFotos(tamanoDoub);
                 }
                 QueryPreferencias.guardarAjustes(getApplicationContext(),tamano,arb,variedadText,numFotos);
+                Toast.makeText(getApplicationContext(),"Se han guardado los campos",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -113,13 +115,14 @@ public class Ajustes extends AppCompatActivity {
 
         return estimarNumFotos(numeroArb);
     }
-    public int estimarNumFotos(int numeroArb){
 
-        double e2 = 25; // error^2
-        double pq = 0.25; //p * q
+    public int estimarNumFotos(int numeroArb){
+        double Za2 = 3.842;
+        double e2 = 0.04; // error^2
+        double pq = 0.25; //p * q = 0.5 * 0.5
 
         //tamaño de la muestra
-        int numFotos = (int) ((int)(e2 * Za2 * numeroArb * pq)/((e2*(numeroArb-1))+(Za2*pq)));
+        int numFotos = (int) ((int)(Za2 * numeroArb * pq)/((e2*(numeroArb-1))+(Za2*pq)));
 
         return numFotos;
     }

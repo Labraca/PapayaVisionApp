@@ -41,14 +41,15 @@ public class OpenCVModuleMT {
     private static OpenCVModuleMT CV;
     private static float TotalPxPapayas;
     private static Context context;
-    private OpenCVModuleMT(){
+    private OpenCVModuleMT(Context context){
+        this.context = context;
     }
 
     public static OpenCVModuleMT getOpenCVInstance(Context context){
         if (CV == null) {
             synchronized (OpenCVModuleMT.class) {
                 if (CV == null) {
-                    CV = new OpenCVModuleMT();
+                    CV = new OpenCVModuleMT(context);
                 }
             }
         }
@@ -117,21 +118,23 @@ public class OpenCVModuleMT {
         }
 
         //Asignamos valores a la foto y la enviamos
-        foto.setPerEnvio(perEnviables);
-        foto.setPerInmadura(perInmaduras);
-        foto.setPerInmadura(perMaduras);
+        foto.setPerm25(perEnviables);
+        foto.setPer25_33(perInmaduras);
+        foto.setPer33_50(perMaduras);
+       // foto.setPer50_70();
+        //foto.setPer70();
 
         return foto;
 
     }
     private static Mat cropImage(Mat img){
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        int displayH = displayMetrics.heightPixels;
-        int displayW = displayMetrics.widthPixels;
+        double displayH = displayMetrics.heightPixels;
+        double displayW = displayMetrics.widthPixels;
 
         int w = img.width();
         int h = img.height();
-        int width = h*(displayW/displayH);
+        int width =(int)(h*(displayW/displayH));
 
         int x0 = w/2;
         int y0 = (h/2)-(h/8);

@@ -73,7 +73,7 @@ public class CameraFragment extends Fragment {
     private RegRepository repoReg;
     private FloatingActionButton photoButton;
     private String currentPhotoPath;
-    private OpenCVModuleMT openCVModuleMT;
+    private OpenCVModule openCVModule;
     public CameraFragment() {
         // Required empty public constructor
     }
@@ -105,7 +105,7 @@ public class CameraFragment extends Fragment {
         }
         cameraProviderFuture = ProcessCameraProvider.getInstance(getContext());
         repoReg = new RegRepository(getActivity().getApplication());
-        openCVModuleMT = OpenCVModuleMT.getOpenCVInstance(getContext());
+        openCVModule = OpenCVModule.getOpenCVInstance(getContext());
     }
 
     @Override
@@ -175,7 +175,7 @@ public class CameraFragment extends Fragment {
                         //ya que 10 fotos semanales de media podria acabar llenando la memoria vamos a comprimir la imagen
                         resizeImage(finalFotoFile);
 
-                        Foto foto = openCVModuleMT.calculatePercents(finalFotoFile);
+                        Foto foto = openCVModule.calculatePercents(finalFotoFile);
                         foto.setPathImage(finalFotoFile.getAbsolutePath());
                         foto.setRegistroId(idReg);
 

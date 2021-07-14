@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class MultipleLinearRegression {
-    private double[] pesos = new double[6];
+    private double[] pesos = new double[8];
     private double bias = 0.0;
     private static MultipleLinearRegression INSTANCIA;
 
@@ -52,7 +52,7 @@ public class MultipleLinearRegression {
     private Pair<Double[],Double> calculateGradients(double[] inputs, double predY,double targetY){
 
         double dJ_dPred = meanSquaredErrorDerivative(predY, targetY); //MSE'
-        double[] dPred_dW = inputs; //X1...X6
+        double[] dPred_dW = inputs; //X1...X8
         double[] dJ_dW = multiplyScalar(dPred_dW,dJ_dPred); //MSE'· X
         double dJ_dB = dJ_dPred;
         Double[] result = new Double[6];

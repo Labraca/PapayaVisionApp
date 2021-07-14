@@ -77,11 +77,13 @@ public class insertRegistrosWorker extends Worker {
             double[] features = new double[6];
             features[0] = last.getTemp();
             features[1] = last.getHrel();
-            features[2] = last.getPerInmaduras();
-            features[3] = last.getPerEnviables();
-            features[4] = last.getPerMuyMaduras();
+            features[2] = last.getPerm25();
+            features[3] = last.getPer25_33();
+            features[4] = last.getPer33_50();
+            features[5] = last.getPer50_70();
+            features[6] = last.getPer70();
             cal.setTime(last.getInicioFecha());
-            features[5] = cal.get(Calendar.MONTH);
+            features[7] = cal.get(Calendar.MONTH);
             double[] result = {last.getVolumen()};
 
             ArrayList<double[]> datos = new ArrayList<double[]>();
@@ -89,17 +91,19 @@ public class insertRegistrosWorker extends Worker {
 
             MultipleLinearRegression mlr = MultipleLinearRegression.getINSTANCIA(getApplicationContext());
             //Entreno el modelo linear de regresion
-            mlr.fit(datos,result,1,6,getApplicationContext());
+            mlr.fit(datos,result,1,8,getApplicationContext());
 
             //calculo la nueva estimacion para esta semana (usando los porcentajes de la ultima semana)
             double[] datosActuales = new double[6];
             datosActuales[0] = reg.getTemp();
             datosActuales[1] = reg.getHrel();
-            datosActuales[2] = last.getPerInmaduras();
-            datosActuales[3] = last.getPerEnviables();
-            datosActuales[4] = last.getPerMuyMaduras();
+            datosActuales[2] = last.getPerm25();
+            datosActuales[3] = last.getPer25_33();
+            datosActuales[4] = last.getPer33_50();
+            datosActuales[5] = last.getPer50_70();
+            datosActuales[6] = last.getPer70();
             cal.setTime(reg.getInicioFecha());
-            datosActuales[5] = cal.get(Calendar.MONTH);
+            datosActuales[7] = cal.get(Calendar.MONTH);
 
             int estimacion = mlr.calcularVolumenEstimado(datosActuales);
             //guardo la estimacion

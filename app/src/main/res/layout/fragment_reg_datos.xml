@@ -175,28 +175,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/mediaTable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:text="Media"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/tempTabla"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".33"
-                android:text="Temp"
+                android:text=" Temp ºC"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -206,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".33"
-                android:text="Hrel"
+                android:text="Hrel %"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -216,58 +200,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/actualTable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:text="Actual"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="2"
+                android:background="?android:attr/listDivider" />
 
-            <TextView
-                android:id="@+id/tempActual"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:text="@string/tempActual"
-                android:textAlignment="center"
-                android:textColor="#534F4F"
-                android:textSize="34sp"
-                tools:text="20ºC" />
-
-            <TextView
-                android:id="@+id/hrelActual"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:text="@string/hrelActual"
-                android:textAlignment="center"
-                android:textColor="#534F4F"
-                android:textSize="34sp"
-                tools:text="50%" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/prxSemTable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".33"
-                android:text="Prox Semana"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tempPrxSem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".33"
+                android:overScrollMode="never"
                 android:text="@string/tempPrxSem"
                 android:textAlignment="center"
                 android:textColor="#534F4F"
@@ -279,6 +230,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight=".33"
+                android:overScrollMode="never"
                 android:text="@string/hrelPrxSem"
                 android:textAlignment="center"
                 android:textColor="#534F4F"
@@ -341,10 +293,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/divider3">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fotosRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:layout_height="wrap_content" />
         </ScrollView>
 
         <View

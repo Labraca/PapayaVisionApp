@@ -158,11 +158,8 @@ public class MainActivity extends AppCompatActivity {
                     i = new Intent(getApplicationContext(), RegDetalles.class);
                     i.putExtra("idReg",lastReg.getIdRegistro());
                     break;
-                case R.id.toWorker:
-                    OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(
-                        insertRegistrosWorker.class)
-                        .build();
-                    WorkManager.getInstance(getApplicationContext()).enqueue(request);
+                case R.id.ajustesButton:
+                    i = new Intent(getApplicationContext(),Ajustes.class);
                     break;
             }
             if(i != null)

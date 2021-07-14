@@ -73,17 +73,23 @@ public class RegRepository {
                 @Override
                 public void onChanged(List<Foto> fotos) {
                     int nFotos = fotos.size();
-                    float perInmaduras = reg.getPerInmaduras();
-                    float perEnviables = reg.getPerEnviables();
-                    float perMaduras = reg.getPerMuyMaduras();
+                    float perm25 = reg.getPerm25();
+                    float per25_33 = reg.getPer25_33();
+                    float per33_50 = reg.getPer33_50();
+                    float per50_70 = reg.getPer50_70();
+                    float per70 = reg.getPer70();
 
-                    float newInmaduras = perInmaduras + (foto.getPerInmadura()-perInmaduras)/(nFotos +1);
-                    float newEnviables = perEnviables + (foto.getPerEnvio()-perEnviables)/(nFotos +1);
-                    float newMaduras = perMaduras + (foto.getPerMadura()-perMaduras)/(nFotos +1);
+                    float newm25 = perm25 + (foto.getPerm25()-perm25)/(nFotos +1);
+                    float new25_33 = per25_33 + (foto.getPer25_33()-per25_33)/(nFotos +1);
+                    float new33_50 = per33_50 + (foto.getPer33_50()-per33_50)/(nFotos +1);
+                    float new50_70 = per50_70 + (foto.getPer50_70()-per50_70)/(nFotos +1);
+                    float new70 = per70 + (foto.getPer70()-per70)/(nFotos +1);
 
-                    reg.setPerInmaduras(newInmaduras);
-                    reg.setPerEnviables(newEnviables);
-                    reg.setPerMuyMaduras(newMaduras);
+                    reg.setPerm25(newm25);
+                    reg.setPer25_33(new25_33);
+                    reg.setPer33_50(new33_50);
+                    reg.setPer50_70(new50_70);
+                    reg.setPer70(new70);
 
                     Calendar cal = Calendar.getInstance();
                     update(reg);
@@ -112,7 +118,6 @@ public class RegRepository {
         return regDao.getLastRegistro();
     }
 
-    public Registro getLastNow(){ return  regDao.getLastRegistroNow();}
 
     public LiveData<Registro> getRegById(int id){
         return regDao.getRegById(id);
@@ -128,6 +133,7 @@ public class RegRepository {
         }
 
     }
+
     public List<Foto> getAllFotosFromReg(Registro reg){
         try {
             return AppDatabase.databaseWriteExecutor.submit(new GetFotos(fotosDao,reg)).get();
@@ -135,7 +141,13 @@ public class RegRepository {
             return null;
         }
     }
-
+    public LiveData<List<Foto>> getAllFotosFromRegLive(Registro reg){
+        try {
+            return regDao.getFotosOfReg(reg.getIdRegistro());
+        }catch (Exception e){
+            return null;
+        }
+    }
     public void updateMedias(LifecycleOwner owner,String codMun){
         getLast().observe(owner, new Observer<Registro>() {
             @Override
@@ -166,7 +178,7 @@ public class RegRepository {
         }
 
         @Override
-        public List<Foto> call() throws Exception {
+        public List<Foto> call()  {
             return fotoDao.getAllFromReg(reg.getIdRegistro());
         }
 

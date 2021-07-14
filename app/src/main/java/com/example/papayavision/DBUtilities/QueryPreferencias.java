@@ -69,17 +69,17 @@ public class QueryPreferencias {
 
         SharedPreferences.Editor editor = preferences.edit();
 
-        editor.putString("tamañoFinca",""+tamañoFinca);
+        editor.putString("tamanoFinca",""+tamañoFinca);
         editor.putString("numeroArboles",""+numeroArboles);
         editor.putString("numeroFotos",""+numFotos);
         editor.putString("variedad",variedad);
         editor.commit();
     }
     public static String[] cargarAjustes(Context c) {
-        SharedPreferences preferences = c.getSharedPreferences("estimacion", Context.MODE_PRIVATE);
+        SharedPreferences preferences = c.getSharedPreferences("ajustes", Context.MODE_PRIVATE);
 
         String[] ajustes = new String[4];
-        ajustes[0] = preferences.getString("tamañoFinca",-1+"");
+        ajustes[0] = preferences.getString("tamanoFinca",-1+"");
         ajustes[1] = preferences.getString("numeroArboles",-1+"");
         ajustes[2] = preferences.getString("variedad","");
         ajustes[3] = preferences.getString("numeroFotos",-1+"");

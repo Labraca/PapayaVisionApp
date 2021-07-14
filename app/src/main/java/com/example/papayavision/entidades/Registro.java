@@ -32,19 +32,31 @@ public class Registro {
     private float hrel= -1;
 
     @Size(min = 0,max =100)
-    @ColumnInfo(name = "perInmaduras")
-    private float perInmaduras=0;
-
+    @ColumnInfo(name = "perm25")
+    private float perm25=0;
     @Size(min = 0,max =100)
-    @ColumnInfo(name = "perEnviables")
-    private float perEnviables=0;
-
+    @ColumnInfo(name = "per25_33")
+    private float per25_33=0;
     @Size(min = 0,max =100)
-    @ColumnInfo(name = "perMuyMaduras")
-    private float perMuyMaduras = 0;
+    @ColumnInfo(name = "per33_55")
+    private float per33_50=0;
+    @Size(min = 0,max =100)
+    @ColumnInfo(name = "per50_70")
+    private float per50_70=0;
+    @Size(min = 0,max =100)
+    @ColumnInfo(name = "per70")
+    private float per70=0;
 
     @ColumnInfo(name = "temp")
     private float temp = -274;
+
+    public int getIdRegistro() {
+        return idRegistro;
+    }
+
+    public void setIdRegistro(int idRegistro) {
+        this.idRegistro = idRegistro;
+    }
 
     public int getVolumen() {
         return volumen;
@@ -62,28 +74,44 @@ public class Registro {
         this.hrel = hrel;
     }
 
-    public float getPerInmaduras() {
-        return perInmaduras;
+    public float getPerm25() {
+        return perm25;
     }
 
-    public void setPerInmaduras(float perInmaduras) {
-        this.perInmaduras = perInmaduras;
+    public void setPerm25(float perm25) {
+        this.perm25 = perm25;
     }
 
-    public float getPerEnviables() {
-        return perEnviables;
+    public float getPer25_33() {
+        return per25_33;
     }
 
-    public void setPerEnviables(float perEnviables) {
-        this.perEnviables = perEnviables;
+    public void setPer25_33(float per25_33) {
+        this.per25_33 = per25_33;
     }
 
-    public float getPerMuyMaduras() {
-        return perMuyMaduras;
+    public float getPer33_50() {
+        return per33_50;
     }
 
-    public void setPerMuyMaduras(float perMuyMaduras) {
-        this.perMuyMaduras = perMuyMaduras;
+    public void setPer33_50(float per33_50) {
+        this.per33_50 = per33_50;
+    }
+
+    public float getPer50_70() {
+        return per50_70;
+    }
+
+    public void setPer50_70(float per50_70) {
+        this.per50_70 = per50_70;
+    }
+
+    public float getPer70() {
+        return per70;
+    }
+
+    public void setPer70(float per70) {
+        this.per70 = per70;
     }
 
     public float getTemp() {
@@ -94,6 +122,14 @@ public class Registro {
         this.temp = temp;
     }
 
+    public Date getInicioFecha() {
+        return inicioFecha;
+    }
+
+    public void setInicioFecha(Date inicioFecha) {
+        this.inicioFecha = inicioFecha;
+    }
+
     public Date getFinFecha() {
         return finFecha;
     }
@@ -102,29 +138,13 @@ public class Registro {
         this.finFecha = finFecha;
     }
 
-
-
-    public int getIdRegistro() {
-        return idRegistro;
-    }
-
-    public void setIdRegistro(int idRegistro) {
-        this.idRegistro = idRegistro;
-    }
-
     @NotNull
     @ColumnInfo(name = "inicioFecha")
     private Date inicioFecha;
     @NotNull
     @ColumnInfo(name = "finFecha")
     private Date finFecha;
-    public Date getInicioFecha() {
-        return inicioFecha;
-    }
 
-    public void setInicioFecha(Date inicioFecha) {
-        this.inicioFecha = inicioFecha;
-    }
 
     public Registro(){}
 

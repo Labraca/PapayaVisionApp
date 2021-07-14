@@ -104,13 +104,13 @@ public class WeatherAPIAdapter {
                         reg.setTemp(medias[0]);
                         reg.setHrel(medias[1]);
                         db.update(reg);
-                        Log.i("HTTPResponse","GAT IIIIN");
+                        
                         Toast.makeText(context,response.toString(),Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("HTTPResponse","SHITS GOIN DAUN");
+
                         Toast.makeText(context,error.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });

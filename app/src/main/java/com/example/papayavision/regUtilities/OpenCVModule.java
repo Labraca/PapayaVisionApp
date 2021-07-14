@@ -1,5 +1,7 @@
 package com.example.papayavision.regUtilities;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.example.papayavision.entidades.Foto;
@@ -17,119 +19,94 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.jar.Manifest;
 
 import static org.opencv.core.CvType.CV_8U;
 
 public class OpenCVModule {
-    private static Scalar YELLOW = new Scalar(30,30,30) ;
-    private static Scalar GREEN = new Scalar(105,80,80);
-    private static Scalar STAGE4 = new Scalar(50,30,30);
+    private static Scalar YELLOW = new Scalar(30,19,25) ;
+    private static Scalar GREEN = new Scalar(130,80,90);
+    private static Scalar STAGE4 = new Scalar(60,30,30);
     private static Scalar STAGE2 = new Scalar(85,80,80);
+    private static Scalar STAGE3 = new Scalar(73,19,25);
+    private static Scalar STAGE5 = new Scalar(50,19,25);
+    private static Scalar STAGE6 = new Scalar(43,19,23);
+    private static final ExecutorService cvExecutor = Executors.newCachedThreadPool();
+    private static OpenCVModule CV;
+    private static Context context;
+    private OpenCVModule(Context context){
+        this.context = context;
+    }
 
-    public static Foto calculatePercents(File file){
+    public static OpenCVModule getOpenCVInstance(Context context){
+        if (CV == null) {
+            synchronized (OpenCVModuleMT.class) {
+                if (CV == null) {
+                    CV = new OpenCVModule(context);
+                }
+            }
+        }
+        return CV;
+    }
+
+    public Foto calculatePercents(File file){
         Foto foto = new Foto();
         //Leemos la imagen
         Imgcodecs imageCodecs = new Imgcodecs();
-        Mat hsv_img = imageCodecs.imread(file.getAbsolutePath());
-        if (hsv_img == null){
+        Mat img = imageCodecs.imread(file.getAbsolutePath());
+        if (img == null){
             Log.e("CV","No se pudo leer la imagen");
             return foto;
         }
-        //Recortamos solo la zona que queremos analizar
-        hsv_img = cropImage(hsv_img);
+        img = cropImage(img);
 
+        Mat hsv_img = new Mat();
         //Pasamos al espacio de colorHSV
-        Imgproc.cvtColor(hsv_img,hsv_img,Imgproc.COLOR_BGR2HSV);
+        Imgproc.cvtColor(img,hsv_img,Imgproc.COLOR_BGR2HSV);
 
         // Rango de colores para ser considerado papaya
         Scalar green = parseHSV2OpenHSV(GREEN);
         Scalar yellow = parseHSV2OpenHSV(YELLOW);
-
-        //Rango de colores para ser considerado enviable
         Scalar stage2 = parseHSV2OpenHSV(STAGE2);
         Scalar stage4 = parseHSV2OpenHSV(STAGE4);
+        Scalar stage3 = parseHSV2OpenHSV(STAGE3);
+        Scalar stage5 = parseHSV2OpenHSV(STAGE5);
+        Scalar stage6 = parseHSV2OpenHSV(STAGE6);
 
-        // Filtramos los valores para identificar pixeles de papaya
-        Mat papayas = new Mat();
-        Core.inRange(hsv_img,yellow,green,papayas); //TODO: IGUAL NO HAY PAPAYAS
-        //Comprobamos que no es una matriz muy vacia
-        float totalPxPapayas = Core.countNonZero(papayas);
-        float totalPx = hsv_img.width()*hsv_img.height();
-        if (totalPxPapayas < 0.3*totalPx){
-            return foto;
-        }
-        // Filtramos para saber cuales seran Enviables
-        Mat enviablesMask = new Mat();
-        Core.inRange(hsv_img,stage4,stage2,enviablesMask);
-
-        //Filtramos para saber cuales seran inmaduras;
-        Mat inmadurasMask = new Mat();
-        Scalar[] umbrales = putRole(stage2,green);
-        Core.inRange(hsv_img,umbrales[0],umbrales[1],inmadurasMask);
-
-        //Filtramos para saber cuales seran maduras;
-        Mat madurasMask = new Mat();
-        umbrales = putRole(yellow,stage4);
-        Core.inRange(hsv_img,umbrales[0],umbrales[1],madurasMask);
-
-        //Filtramos los valores acoplados entre las Enviables y las Inmaduras
-        Mat entreIyE = new Mat();
-        Core.bitwise_and(enviablesMask,enviablesMask,entreIyE,inmadurasMask);
-        Mat HSVentreIyE = new Mat();
-        Core.bitwise_and(hsv_img,hsv_img,HSVentreIyE,entreIyE);
-
-        //Filtramos los valores acoplados entre las Enviables y las Maduras
-        Mat entreEyM = new Mat();
-        Core.bitwise_and(enviablesMask,enviablesMask,entreEyM,madurasMask);
-        Mat HSVentreEyM = new Mat();
-        Core.bitwise_and(hsv_img,hsv_img,HSVentreEyM,entreEyM);
-
-        //Obtenemos el valor medio de los acoplados
-        double meanIyE =  getMeanOfMask(HSVentreIyE);
-        double meanEyM = getMeanOfMask(HSVentreEyM);
-
-        //Hacemos una mascara solo de la mitad de los acoplados en el rango de las Inmaduras y las Maduras
-        Mat acopInm = new Mat();
-        Core.inRange(hsv_img,new Scalar(meanIyE,74,74),green,acopInm);
-        Mat acopMad = new Mat();
-        Core.inRange(hsv_img,yellow,new Scalar(meanEyM,204,204),acopMad);
-
-        //Calculo de los pixeles de cada zona
-        float pxAcEntreIyE = Core.countNonZero(entreIyE);
-        float pxAcEntreEyM = Core.countNonZero(entreEyM);
-        float pxAcEnI = Core.countNonZero(acopInm);
-        float pxAcEnM = Core.countNonZero(acopMad);
-
-        float totalPxInmaduras = Core.countNonZero(inmadurasMask) - (pxAcEntreIyE - pxAcEnI);
-        float totalPxMaduras = Core.countNonZero(madurasMask) - (pxAcEntreEyM - pxAcEnM);
-        // Si los totales anteriores dan 0 significa que los pixeles corresponden enteramente a los enviables
-        if (totalPxInmaduras == 0)
-            pxAcEnI = 0;
-        if (totalPxMaduras == 0)
-            pxAcEnM = 0;
-
-        float totalPxEnviables = Core.countNonZero(enviablesMask) - pxAcEnI - pxAcEnM;
-
-        //calculo de los porcentajes
-        float perEnviables = round((totalPxEnviables/totalPxPapayas)*100,2);
-        float perInmaduras = round((totalPxInmaduras/totalPxPapayas)*100,2);
-        float perMaduras = round((totalPxMaduras/totalPxPapayas)*100,2);
+        Scalar[] stages = {green,stage2,stage3,stage4,stage5,stage6,yellow};
+        double[] percents;
+        percents = getdataFromMatThreads(hsv_img,stages);
 
         //Asignamos valores a la foto y la enviamos
-        foto.setPerEnvio(perEnviables);
-        foto.setPerInmadura(perInmaduras);
-        foto.setPerInmadura(perMaduras);
+        foto.setPerm25(Float.parseFloat(""+percents[0]));
+        foto.setPer25_33(Float.parseFloat(""+percents[1]));
+        foto.setPer33_50(Float.parseFloat(""+percents[2]));
+        foto.setPer50_70(Float.parseFloat(""+percents[3]));
+        foto.setPer70((Float.parseFloat(""+percents[4])));
 
         return foto;
 
     }
-    private static Mat cropImage(Mat img){
+    private Mat cropImage(Mat img){
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        double displayH = displayMetrics.heightPixels;
+        double displayW = displayMetrics.widthPixels;
+
         int w = img.width();
         int h = img.height();
+        int width = (int)(h*(displayW/displayH));
 
+        //center
         int x0 = w/2;
         int y0 = (h/2)-(h/8);
-        int dx = w/3;
+
+        //padding
+        int dx = width/3;
         int dy = h/3;
 
         Mat roi = img.submat(y0-dy,y0+dy,x0-dx,x0+dx);
@@ -143,8 +120,8 @@ public class OpenCVModule {
         return new Scalar(h,s,v);
     }
     private static Scalar[] putRole(Scalar low, Scalar up){
-        low.val[1] = 76;
-        low.val[2] = 76;
+        low.val[1] = 53;
+        low.val[2] = 63;
 
         up.val[1] = 204;
         up.val[2] = 204;
@@ -184,5 +161,101 @@ public class OpenCVModule {
         BigDecimal bd = new BigDecimal(Float.toString(d));
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return bd.floatValue();
+    }
+    private static double[] getdataFromMatThreads(Mat img, Scalar[] stages){
+        int batch = 2;
+
+        int heightpos = (img.height()/batch) - 1;
+        ArrayList<Future<double[]>> submats = new ArrayList<>();
+
+        int pos=0;
+        for(int i = 0;i<batch;i++){
+            Mat submat = img.submat(pos,pos += heightpos,0,img.width());
+            pos++;
+
+            Future<double[]> futurePercent =
+                    cvExecutor.submit(new calculatePercent(submat,stages));
+            submats.add(futurePercent);
+        }
+
+        double[] percents = {0,0,0,0,0};
+        for(int i = 0;i<batch; i++){
+            for(int j = 0;j<percents.length;j++){
+
+                try {
+                    percents[j] += submats.get(i).get()[j];
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+        return percents;
+    }
+
+    private static class calculatePercent implements Callable<double[]>{
+
+        Mat img;
+        Scalar[] stages;
+        public calculatePercent(Mat img,Scalar[] stages){
+            this.img=img;
+            this.stages = stages;
+        }
+        @Override
+        public double[] call() throws Exception {
+            return getDataFromMat(this.img,this.stages);
+        }
+    }
+    private static double[] getDataFromMat(Mat img, Scalar[] stages){
+
+        double minS = stages[stages.length-1].val[1];
+        double minV = stages[stages.length-1].val[2];
+        double maxS = 204.0;
+        double maxV = 204.0;
+        double sum= 0.0;
+        double Pxm25 = 0.0;
+        double Px25_33 = 0.0;
+        double Px33_50 = 0.0;
+        double Px50_70 = 0.0;
+        double Px70 = 0.0;
+
+        for(int i = 0; i < img.height(); i++) {
+            for(int j = 0;j<img.width();j++){
+                double[] px = img.get(i,j);
+                if(!(px[1]<minS || px[1]> maxS || px[2]<minV || px[2]<maxV)){
+                    if((stages[0].val[0] >= px[0]) && (px[0] > stages[1].val[0])){
+                        sum++;
+                        Pxm25++;
+                    }else if ((stages[1].val[0] >= px[0]) && (px[0] > stages[3].val[0])){
+                        sum++;
+                        Px25_33++;
+                    }else if ((stages[3].val[0] >= px[0]) && (px[0] > stages[4].val[0])){
+                        sum++;
+                        Px33_50++;
+                    }else if ((stages[4].val[0] >= px[0]) && (px[0] > stages[5].val[0])){
+                        sum++;
+                        Px50_70++;
+                    }else if ((stages[5].val[0] >= px[0]) && (px[0] > stages[6].val[0])){
+                        sum++;
+                        Px70++;
+                    }
+                }
+            }
+        }
+        if(sum == 0)
+            return new double[]{0,0,0,0,0};
+
+        double perm25 = Pxm25/sum;
+        double per25_33 = Px25_33/sum;
+        double per33_50 = Px33_50/sum;
+        double per50_70 = Px50_70/sum;
+        double per70 = Px70/sum;
+
+        double[] porcentajes = {perm25,per25_33,per33_50,per50_70,per70};
+
+        return  porcentajes;
     }
 }

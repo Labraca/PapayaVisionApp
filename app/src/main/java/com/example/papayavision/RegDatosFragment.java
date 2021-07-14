@@ -10,6 +10,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,12 +22,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.papayavision.DBUtilities.QueryPreferencias;
+import com.example.papayavision.entidades.Foto;
 import com.example.papayavision.entidades.Registro;
 import com.example.papayavision.entidades.RegistroViewModel;
+import com.example.papayavision.regUtilities.FotoAdapter;
 import com.example.papayavision.regUtilities.MultipleLinearRegression;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -33,10 +38,13 @@ public class RegDatosFragment extends Fragment {
     private RegistroViewModel viewModel;
     private EditText volReg;
     private LiveData<Registro> regHost;
+    private LiveData<List<Foto>> fotos;
     private TextView volEstimacion;
     private String estimacion;
     private ConstraintLayout fotosContainer;
     private TextView fotosTotal;
+    private FotoAdapter adapter;
+    private TextView hrelPrxSem,tempPrxSem;
     public RegDatosFragment() {
         // Required empty public constructor
     }
@@ -61,9 +69,13 @@ public class RegDatosFragment extends Fragment {
             viewModel = new ViewModelProvider(requireActivity()).get(RegistroViewModel.class);
         volReg = view.findViewById(R.id.volActual);
         volEstimacion = view.findViewById(R.id.volEstimacion);
-        fotosContainer= view.findViewById(R.id.fotosRecom);
+        fotosTotal = view.findViewById(R.id.fotosRecom);
+        tempPrxSem = view.findViewById(R.id.tempPrxSem);
+        hrelPrxSem = view.findViewById(R.id.hrelPrxSem);
 
-
+        RecyclerView recyclerView = view.findViewById(R.id.fotosRecycler);
+        int numberOfColumns = 3;
+        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(),numberOfColumns));
 
         regHost = viewModel.getSelectedItem();
         regHost.observe(getViewLifecycleOwner(), new Observer<Registro>() {
@@ -73,15 +85,26 @@ public class RegDatosFragment extends Fragment {
                 updateEstimacion(registro);
                 volEstimacion.setText(estimacion);
 
+                tempPrxSem.setText(registro.getTemp()+"");
+                hrelPrxSem.setText(registro.getHrel()+"");
+
                 String[] ajustes = QueryPreferencias.cargarAjustes(getContext());
 
-                if(ajustes[4].isEmpty())
+                if(ajustes[3].isEmpty())
                     fotosTotal
                             .setText("Configure sus ajustes");
                 else
                     fotosTotal
                             .setText(viewModel.getNumOfFotosInRegistro(registro)
-                            +"/"+ajustes[4]);
+                            +"/"+ajustes[3]);
+                fotos = viewModel.getFotosOfRegLive(registro);
+                fotos.observe(getViewLifecycleOwner(), new Observer<List<Foto>>() {
+                    @Override
+                    public void onChanged(List<Foto> fotos) {
+                        adapter = new FotoAdapter(fotos);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
             }
         });
 
@@ -140,10 +163,10 @@ public class RegDatosFragment extends Fragment {
 
 
 
-        //tempActual = findViewById(R.id.tempActual);
-        // tempPrxSem = findViewById(R.id.tempPrxSem);
-        // hrelActual = findViewById(R.id.hrelActual);
-        // hrelPrxSem = findViewById(R.id.hrelPrxSem);
+
+
+
+
 
     }
 
@@ -161,14 +184,16 @@ public class RegDatosFragment extends Fragment {
         if(weeksUntilLastConnection(reg) == 0 && viewModel.getNumOfFotosInRegistro(reg) != 0) {
             Calendar cal = Calendar.getInstance();
             MultipleLinearRegression mlr = MultipleLinearRegression.getINSTANCIA(getContext());
-            double[] datosActuales = new double[6];
+            double[] datosActuales = new double[8];
             datosActuales[0] = reg.getTemp();
             datosActuales[1] = reg.getHrel();
-            datosActuales[2] = reg.getPerInmaduras();
-            datosActuales[3] = reg.getPerEnviables();
-            datosActuales[4] = reg.getPerMuyMaduras();
+            datosActuales[2] = reg.getPerm25();
+            datosActuales[3] = reg.getPer25_33();
+            datosActuales[4] = reg.getPer33_50();
+            datosActuales[5] = reg.getPer50_70();
+            datosActuales[6] = reg.getPer70();
             cal.setTime(reg.getInicioFecha());
-            datosActuales[5] = cal.get(Calendar.MONTH);
+            datosActuales[7] = cal.get(Calendar.MONTH);
             int est = mlr.calcularVolumenEstimado(datosActuales);
             estimacion = "" + est;
             QueryPreferencias.guardarEstimacion(getContext(), est);
