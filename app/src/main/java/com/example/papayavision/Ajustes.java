@@ -58,7 +58,7 @@ public class Ajustes extends AppCompatActivity {
                     numFotos = estimarNumFotos(numArb);
 
                 }else if(!tamano.isEmpty()){
-                    double tamanoDoub = Double.parseDouble(arb);
+                    double tamanoDoub = Double.parseDouble(tamano);
                     numFotos = estimarNumFotos(tamanoDoub);
                 }
                 QueryPreferencias.guardarAjustes(getApplicationContext(),tamano,arb,variedadText,numFotos);

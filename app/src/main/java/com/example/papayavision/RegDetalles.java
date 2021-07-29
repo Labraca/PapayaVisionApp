@@ -52,7 +52,7 @@ public class RegDetalles extends AppCompatActivity {
 
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
 
-                requestPermissions((new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}),98);
+                requestPermissions((new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}),98);
 
             }
         }

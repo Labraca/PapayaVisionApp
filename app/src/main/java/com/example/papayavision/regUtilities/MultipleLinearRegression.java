@@ -55,7 +55,7 @@ public class MultipleLinearRegression {
         double[] dPred_dW = inputs; //X1...X8
         double[] dJ_dW = multiplyScalar(dPred_dW,dJ_dPred); //MSE'· X
         double dJ_dB = dJ_dPred;
-        Double[] result = new Double[6];
+        Double[] result = new Double[8];
         int j = 0;
         for (double i:dJ_dW){
             Double x = new Double(i);
@@ -98,7 +98,7 @@ public class MultipleLinearRegression {
                     //data = gradientes.toArray(data);
                     gradients.add(gradientes);
                 }
-                optimizeParameters(gradients,0.01);
+                optimizeParameters(gradients,0.00009);
             }
         }
         QueryPreferencias.guardarPesos(context,this.pesos,this.bias);
@@ -142,7 +142,7 @@ public class MultipleLinearRegression {
             for(Double[] array:x){
                 suma += array[i];
             }
-            mean.add(suma);
+            mean.add(suma/x.size());
         }
         return mean;
     }
@@ -150,10 +150,11 @@ public class MultipleLinearRegression {
         return 2* (predY - targetY);
     }
     private double[] multiplyScalar(double[] array,double scalar){
+        double[] x = new double[array.length];
         for(int i = 0; i < array.length; i++){
-            array[i] = array[i]*scalar;
+            x[i] = array[i]*scalar;
         }
-        return array;
+        return x;
     }
     private double[] multiplyScalar(ArrayList<Double> array,double scalar){
         double[] x = new double[array.size()];

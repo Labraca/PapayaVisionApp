@@ -58,8 +58,8 @@ public class OpenCVModule {
         Foto foto = new Foto();
         //Leemos la imagen
         Imgcodecs imageCodecs = new Imgcodecs();
-        Mat img = imageCodecs.imread(file.getAbsolutePath());
-        if (img == null){
+        Mat img = imageCodecs.imread(file.getAbsolutePath(),Imgcodecs.IMREAD_COLOR);
+        if (img == null || img.width() == 0 ){
             Log.e("CV","No se pudo leer la imagen");
             return foto;
         }
@@ -183,7 +183,7 @@ public class OpenCVModule {
             for(int j = 0;j<percents.length;j++){
 
                 try {
-                    percents[j] += submats.get(i).get()[j];
+                    percents[j] += submats.get(i).get()[j]/batch;
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -225,7 +225,7 @@ public class OpenCVModule {
         for(int i = 0; i < img.height(); i++) {
             for(int j = 0;j<img.width();j++){
                 double[] px = img.get(i,j);
-                if(!(px[1]<minS || px[1]> maxS || px[2]<minV || px[2]<maxV)){
+                if(px[1] >= minS && px[1] <= maxS && px[2] >= minV && px[2] <= maxV){
                     if((stages[0].val[0] >= px[0]) && (px[0] > stages[1].val[0])){
                         sum++;
                         Pxm25++;
@@ -238,7 +238,7 @@ public class OpenCVModule {
                     }else if ((stages[4].val[0] >= px[0]) && (px[0] > stages[5].val[0])){
                         sum++;
                         Px50_70++;
-                    }else if ((stages[5].val[0] >= px[0]) && (px[0] > stages[6].val[0])){
+                    }else if ((stages[5].val[0] >= px[0]) && (px[0] >= stages[6].val[0])){
                         sum++;
                         Px70++;
                     }

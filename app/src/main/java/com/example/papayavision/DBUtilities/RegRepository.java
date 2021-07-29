@@ -27,11 +27,11 @@ import static java.lang.Math.round;
 
 public class RegRepository {
 
-    private RegistroDao regDao;
+    public RegistroDao regDao;
     private LiveData<List<Registro>> allRegSem;
-    private MunicipioDAO munDao;
-    private FotosDao fotosDao;
-    private WeatherAPIAdapter weatherAPIAdapter;
+    public MunicipioDAO munDao;
+    public FotosDao fotosDao;
+    public WeatherAPIAdapter weatherAPIAdapter;
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
     // See the BasicSample in the android-architecture-components repository at
@@ -108,7 +108,12 @@ public class RegRepository {
             regDao.insertRegistros(reg);
         });
     }
-
+    public void insert(Registro reg, String ubi){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            regDao.insertRegistros(reg);
+            weatherAPIAdapter.updateMediasRegistro(ubi,reg);
+        });
+    }
     public void update(Registro reg){
         AppDatabase.databaseWriteExecutor.execute(() -> {
             regDao.updateRegistros(reg);
@@ -156,6 +161,10 @@ public class RegRepository {
                 weatherAPIAdapter.updateMediasRegistro(codMun,registro);
             }
         });
+    }
+    public void updateMedias(Registro reg,String codMun){
+        weatherAPIAdapter.updateMediasRegistro(codMun,reg);
+
     }
     private static class GetMunicipio implements Callable<List<Municipio>> {
         private MunicipioDAO munDao;

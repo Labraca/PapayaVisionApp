@@ -44,7 +44,7 @@ public class RegDatosFragment extends Fragment {
     private ConstraintLayout fotosContainer;
     private TextView fotosTotal;
     private FotoAdapter adapter;
-    private TextView hrelPrxSem,tempPrxSem;
+    private TextView hrelPrxSem,tempPrxSem,perm25Text,per25_33Text,per33_50Text,per50_70Text,per70Text;
     public RegDatosFragment() {
         // Required empty public constructor
     }
@@ -72,6 +72,11 @@ public class RegDatosFragment extends Fragment {
         fotosTotal = view.findViewById(R.id.fotosRecom);
         tempPrxSem = view.findViewById(R.id.tempPrxSem);
         hrelPrxSem = view.findViewById(R.id.hrelPrxSem);
+        perm25Text = view.findViewById(R.id.perm25Text);
+        per25_33Text = view.findViewById(R.id.per25_33Text);
+        per33_50Text = view.findViewById(R.id.per33_50Text);
+        per50_70Text = view.findViewById(R.id.per50_70Text);
+        per70Text = view.findViewById(R.id.per70Text);
 
         RecyclerView recyclerView = view.findViewById(R.id.fotosRecycler);
         int numberOfColumns = 3;
@@ -81,22 +86,32 @@ public class RegDatosFragment extends Fragment {
         regHost.observe(getViewLifecycleOwner(), new Observer<Registro>() {
             @Override
             public void onChanged(Registro registro) {
-                volReg.setText(registro.getVolumen()+"");
+                volReg.setHint(registro.getVolumen()+"");
                 updateEstimacion(registro);
                 volEstimacion.setText(estimacion);
+                String[] ubi = QueryPreferencias.cargarUbicacion(getContext());
+                if (registro.getHrel() < 0 && !ubi[1].equals("-1")){
+                    viewModel.updateMedias(registro,ubi[1]);
+                }
 
                 tempPrxSem.setText(registro.getTemp()+"");
                 hrelPrxSem.setText(registro.getHrel()+"");
+                perm25Text.setText(registro.getPerm25()+"");
+                per25_33Text.setText(registro.getPer25_33()+"");
+                per33_50Text.setText(registro.getPer33_50()+"");
+                per50_70Text.setText(registro.getPer50_70()+"");
+                per70Text.setText(registro.getPer70()+"");
 
                 String[] ajustes = QueryPreferencias.cargarAjustes(getContext());
 
-                if(ajustes[3].isEmpty())
+                if(ajustes[3].equals("-1"))
                     fotosTotal
                             .setText("Configure sus ajustes");
                 else
                     fotosTotal
                             .setText(viewModel.getNumOfFotosInRegistro(registro)
                             +"/"+ajustes[3]);
+
                 fotos = viewModel.getFotosOfRegLive(registro);
                 fotos.observe(getViewLifecycleOwner(), new Observer<List<Foto>>() {
                     @Override
@@ -107,7 +122,7 @@ public class RegDatosFragment extends Fragment {
                 });
             }
         });
-
+        /*
         volReg.addTextChangedListener(new TextWatcher() {
             private Pattern regex = Pattern.compile("\\d{1,5}");
             private String previousText = "";
@@ -127,16 +142,20 @@ public class RegDatosFragment extends Fragment {
                 else
                     s.replace(0,s.length(),previousText);
             }
-        });
+        });*/
         volReg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
-                    String editText = volReg.getText().toString();
-                    String volumen = editText.substring(0,editText.length()-2);
-                    Registro reg = regHost.getValue();
-                    reg.setVolumen(Integer.parseInt(volumen));
-                    viewModel.update(reg);
+                    String volumen = volReg.getText().toString();
+                    if (!volumen.isEmpty()) {
+                        Registro reg = regHost.getValue();
+                        reg.setVolumen(Integer.parseInt(volumen));
+                        viewModel.update(reg);
+                    }else{
+
+                        volReg.setHint(regHost.getValue().getVolumen());
+                    }
                 }
             }
         });
@@ -160,13 +179,6 @@ public class RegDatosFragment extends Fragment {
             }
         });
         estimacion = QueryPreferencias.cargarEstimacion(getContext());
-
-
-
-
-
-
-
 
     }
 

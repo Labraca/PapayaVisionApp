@@ -48,4 +48,7 @@ public class RegistroViewModel extends AndroidViewModel {
     public LiveData<Registro> getSelectedItem() {
         return selectedItem;
     }
+    public void updateMedias(Registro reg,String codMun){
+        repository.updateMedias(reg,codMun);
+    }
 }

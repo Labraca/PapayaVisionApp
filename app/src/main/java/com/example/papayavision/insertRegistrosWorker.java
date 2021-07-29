@@ -74,7 +74,7 @@ public class insertRegistrosWorker extends Worker {
             Log.w("WORKER","Volumen negativos");
             return Result.retry();
         }else{
-            double[] features = new double[6];
+            double[] features = new double[8];
             features[0] = last.getTemp();
             features[1] = last.getHrel();
             features[2] = last.getPerm25();
@@ -94,7 +94,7 @@ public class insertRegistrosWorker extends Worker {
             mlr.fit(datos,result,1,8,getApplicationContext());
 
             //calculo la nueva estimacion para esta semana (usando los porcentajes de la ultima semana)
-            double[] datosActuales = new double[6];
+            double[] datosActuales = new double[8];
             datosActuales[0] = reg.getTemp();
             datosActuales[1] = reg.getHrel();
             datosActuales[2] = last.getPerm25();
@@ -110,9 +110,18 @@ public class insertRegistrosWorker extends Worker {
             QueryPreferencias.guardarEstimacion(getApplicationContext(),estimacion);
 
         }
-        db.registroDao().insertRegistros(reg);
+        try {
+            db.registroDao().insertRegistros(reg);
+        }catch (Exception e){
+            return Result.failure();
+        }
         if(!ubicacion[1].equals("-1")){
-            db.wAPIAdapter.updateMediasRegistro(ubicacion[1],reg);
+            if (isRegInserted(reg))
+                db.wAPIAdapter.updateMediasRegistro(ubicacion[1], reg);
+            else
+                while (!isRegInserted(reg)) {
+                    db.wAPIAdapter.updateMediasRegistro(ubicacion[1], reg);
+                }
         }
         Log.i("WORKER","Registro añadido");
         return Result.success();
@@ -128,5 +137,13 @@ public class insertRegistrosWorker extends Worker {
 
         int weeksSinceConnection = (currentADias - lastConnectADias) / 7;
         return weeksSinceConnection;
+    }
+    private boolean isRegInserted(Registro reg){
+        try {
+            db.registroDao().getRegById(reg.getIdRegistro());
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }

@@ -161,6 +161,12 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.ajustesButton:
                     i = new Intent(getApplicationContext(),Ajustes.class);
                     break;
+                case R.id.toWorker:
+                    OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(
+                            insertRegistrosWorker.class)
+                            .build();
+                    WorkManager.getInstance(getApplicationContext()).enqueue(request);
+                    break;
             }
             if(i != null)
                 startActivity(i);
